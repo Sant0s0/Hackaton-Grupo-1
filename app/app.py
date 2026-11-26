@@ -7,7 +7,8 @@ from app.common import saved_experiment, show_figure
 from app.dashboard import consolidated, winner_panel, comparison, modular_simulation
 from app.modules import setup, eda, baseline, features, advanced, delivery
 from src.data import ROOT, load_data, validate_submission
-from src.plots import class_figure, pca_figure
+from src.plots import class_figure
+from app.charts import render_pca_overview
 import pandas as pd
 
 st.set_page_config(page_title="WineLab · Comparación de modelos", page_icon="🍷", layout="wide")
@@ -58,6 +59,8 @@ try:
         modular_simulation(data, train, meta, results, specs, method)
     elif section == "EDA y PCA":
         st.header("EDA y PCA")
+        render_pca_overview(train)
+        st.subheader("Distribución de clases")
         a,b = st.columns(2)
         with a:
             show_figure(class_figure(train))
@@ -65,8 +68,6 @@ try:
             st.metric("Observaciones de entrenamiento", str(len(train)))
             st.metric("Mediciones originales", "11")
             st.write("F1 macro asigna el mismo peso a ambas clases. El id no es un predictor.")
-        show_figure(pca_figure(train))
-        st.caption("PCA exploratorio del proyecto base: 11 variables + 3 cocientes. El ganador usa otra representación de 40 coordenadas y no emplea PCA.")
     elif section == "Recorrido técnico":
         pages = [setup, eda, baseline, features, advanced, delivery]
         st.caption("Progresión matemática del proyecto base. La selección entre las tres versiones aparece en «Mejor modelo» y en el módulo 6.")

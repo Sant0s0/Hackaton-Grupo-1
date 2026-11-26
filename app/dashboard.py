@@ -2,11 +2,11 @@
 import json
 from types import SimpleNamespace
 import joblib
-import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
-from app.common import model_panel, show_figure, simulator
+from app.common import model_panel, simulator
 from src.data import ROOT, fingerprints
+from app.charts import ranking_frame, ranking_figure
 
 
 def consolidated():
@@ -50,19 +50,34 @@ def winner_panel(data, compact=False):
 def comparison(data):
     st.header("Comparativa de modelos")
     st.write("Se reutilizaron resultados de las tres versiones con los mismos datos y cinco folds estratificados, semilla 42. No se ejecutó una nueva búsqueda.")
-    frame = pd.DataFrame(data['models'])
-    fig, ax = plt.subplots(figsize=(9, 3.8), layout="constrained")
-    bars = ax.barh(frame.name[::-1], frame.f1_macro[::-1], color=["#a78bfa"] * (len(frame)-1) + ["#f43f5e"])
-    ax.bar_label(bars, fmt="%.4f", padding=6)
-    ax.set(xlim=(0, 1), xlabel="F1 macro · decisión estándar", title="Representantes seleccionados para el simulador")
-    show_figure(fig)
-    st.dataframe(frame[['name', 'source', 'f1_macro', 'std']].rename(columns={
-        "name": "Modelo", "source": "Procedencia", "f1_macro": "F1 macro", "std": "Desv. muestral"}), hide_index=True, width="stretch")
-    st.caption("Una desviación vacía indica que la fuente no guardó la dispersión de la decisión estándar. No se sustituye por la del umbral ajustado.")
+    st.subheader("Ranking completo de modelos")
+    all_results = ranking_frame()
+    families = st.multiselect("Familias visibles", ['k-NN','SVM','MLP','k-means'], default=['k-NN','SVM','MLP','k-means'])
+    visible = all_results[all_results.family.isin(families)]
+    st.caption(f"{len(visible)} de {len(all_results)} configuraciones · ordenadas de mayor a menor F1 macro · el ganador está en rojo")
+    if not visible.empty:
+        left,right = st.columns([1.35, 1])
+        with left:
+            with st.container(height=720, border=False):
+                st.plotly_chart(ranking_figure(visible), theme=None, width="stretch", key="complete_model_ranking")
+        with right:
+            compact_table = visible[['rank','display_name','f1_macro']].copy()
+            compact_table['display_name'] = '[' + visible['source'].replace({
+                'Proyecto base':'Base','Versión alternativa':'Alternativa','Versión Alejo':'Alejo'}) + '] ' + visible['display_name']
+            st.dataframe(compact_table.rename(columns={
+                'rank':'Puesto','display_name':'Configuración','f1_macro':'F1 macro'}),
+                hide_index=True, width="stretch", height=720, column_config={
+                    'Puesto':st.column_config.NumberColumn(width='small'),
+                    'Configuración':st.column_config.TextColumn(width='medium'),
+                    'F1 macro':st.column_config.ProgressColumn(format='%.4f',min_value=0,max_value=1,width='small')})
+    else:
+        st.info("Selecciona una familia para mostrar su ranking.")
+    st.download_button("Descargar ranking completo", all_results.to_csv(index=False), "ranking_modelos.csv", "text/csv")
+    st.caption("Desplázate dentro de la gráfica o de la tabla para ver todo el ranking. Pasa el cursor sobre una barra para ver la configuración completa. Las barras de error solo aparecen cuando la fuente guardó la desviación estándar.")
     st.subheader("El mejor resultado de cada proyecto")
     sources = pd.DataFrame(data['source_winners'])
     st.dataframe(sources[['source','name','f1_macro']].rename(columns={"source":"Proyecto", "name":"Mejor configuración", "f1_macro":"F1 macro estándar"}), hide_index=True, width="stretch")
-    with st.expander("Ver las 116 configuraciones y sus resultados reportados"):
+    with st.expander("Detalle adicional: resultados con y sin ajuste de umbral"):
         all_results = pd.read_csv(ROOT / "outputs/project_comparison.csv")
         st.dataframe(all_results.rename(columns={"source":"Proyecto", "name":"Configuración", "family":"Familia", "f1_macro":"F1 estándar (ranking)", "reported_f1":"F1 reportado en origen", "adjusted_threshold":"Origen ajustó umbral", "std":"Desv. estándar"}), hide_index=True, width="stretch")
         st.download_button("Descargar comparación", all_results.to_csv(index=False), "project_comparison.csv", "text/csv")

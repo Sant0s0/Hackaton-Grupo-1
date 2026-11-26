@@ -51,11 +51,15 @@ Alejo. Funciona sin fuentes o recursos visuales de internet.
 
 - **Mejor modelo:** panel destacado con F1, parámetros exactos y transformaciones.
 - **Comparativa:** gráfico y tabla por método, ganadores de las tres versiones y las
-  116 configuraciones con procedencia y criterio de comparación.
+  116 configuraciones con procedencia y criterio de comparación. Ranking completo
+  visible directamente, colores por familia y ganador en rojo; tabla de F1 con barras.
 - **Simulador modular:** escoger k-NN, k-means, SVM lineal/polinomial/RBF o MLP;
   introducir las once mediciones y predecir con el pipeline seleccionado. PCA se
   presenta como transformación acompañada de un clasificador.
-- **EDA y PCA:** distribución de clases y proyección exploratoria.
+- **EDA y PCA:** espectro de autovalores, barras de varianza individual y curva acumulada,
+  líneas del 90%/95% y tabla por componente, visibles sin desplegables. Permite alternar
+  entre 11 mediciones originales (7/9 componentes para 90%/95%) y 22 atributos químicos.
+  Incluye además la distribución de clases.
 - **Recorrido técnico:** seis módulos conservan la progresión de la guía.
 - **Descargar predicciones:** CSV generado con el ganador consolidado.
 
