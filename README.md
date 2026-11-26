@@ -86,6 +86,8 @@ Su procedimiento de umbral OOF no constituye una CV anidada estricta y no se uti
 para declarar el ganador. La dispersión ajustada no se atribuye a los scores estándar.
 Las métricas proceden de ejecuciones existentes; no se recalcularon por observar las
 gráficas. Los tiempos de equipos distintos no se usan como criterio de selección.
+La app muestra el entrenamiento medio registrado en segundos por fold en el panel
+ganador, la tabla del ranking y los detalles de las barras; no recalcula esos tiempos.
 
 ## Datos, prevención de fuga y límites
 

@@ -56,12 +56,13 @@ def ranking_figure(frame):
     labels = [f"{r['rank']:03d} · {r['display_name'][:64]}{'…' if len(r['display_name'])>64 else ''} · {PROJECT_NAMES[r['source']]}"
               for _, r in frame.iterrows()]
     hover = [[r['display_name'], r['source'], r['family'],
-              "No disponible" if pd.isna(r['std']) else f"{r['std']:.4f}"] for _, r in frame.iterrows()]
+              "No disponible" if pd.isna(r['std']) else f"{r['std']:.4f}",
+              "No disponible" if pd.isna(r['fit_seconds']) else f"{r['fit_seconds']:.4f} s/fold"] for _, r in frame.iterrows()]
     fig = go.Figure(go.Bar(x=frame.f1_macro.tolist(), y=labels, orientation='h',
         marker_color=["#f43f5e" if r['rank'] == 1 else FAMILY_COLORS[r['family']] for _, r in frame.iterrows()],
         text=[f"{v:.4f}" for v in frame.f1_macro], textposition="outside", cliponaxis=False,
         error_x=dict(type="data", array=frame['std'].fillna(0).tolist(), color="#e2e8f0", thickness=1, width=3),
-        customdata=hover, hovertemplate="<b>%{customdata[0]}</b><br>Proyecto: %{customdata[1]}<br>Familia: %{customdata[2]}<br>F1 macro estándar: %{x:.4f}<br>Desv. CV: %{customdata[3]}<extra></extra>"))
+        customdata=hover, hovertemplate="<b>%{customdata[0]}</b><br>Proyecto: %{customdata[1]}<br>Familia: %{customdata[2]}<br>F1 macro estándar: %{x:.4f}<br>Desv. CV: %{customdata[3]}<br>Entrenamiento medio: %{customdata[4]}<extra></extra>"))
     style_figure(fig, max(470, len(frame)*32+90))
     fig.update_yaxes(autorange="reversed", categoryorder="array", categoryarray=labels, automargin=True, tickfont_size=12)
     fig.update_xaxes(title="F1 macro · decisión estándar (eje ampliado)", range=[.55, .93], gridcolor="rgba(255,255,255,.08)")

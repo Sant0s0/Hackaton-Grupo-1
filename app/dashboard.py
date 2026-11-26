@@ -28,11 +28,15 @@ def winner_panel(data, compact=False):
 <div class="score">{winner['f1_macro']:.4f}<span> F1 macro · validación cruzada</span></div>
 <div class="chips"><span>23 vecinos</span><span>Coseno</span><span>Votos 1/distancia</span><span>Centroides 2 + 6</span><span>Sin PCA</span></div></div>''', unsafe_allow_html=True)
     if not compact:
-        columns = st.columns(4)
+        columns = st.columns(5)
         columns[0].metric("F1 macro · CV", f"{winner['f1_macro']:.4f}")
         columns[1].metric("Mejora sobre versión base", f"+{winner['f1_macro']-data['previous_winner_f1']:.4f}")
         columns[2].metric("Configuraciones revisadas", str(data['total_configurations']))
         columns[3].metric("Variables de entrada al k-NN", "40")
+        training_seconds = next((r.get('fit_seconds') for r in data.get('source_winners', [])
+                                 if r['source'] == winner['source']), None)
+        columns[4].metric("Entrenamiento (s/fold)", f"{training_seconds:.4f}" if training_seconds is not None else "Sin dato")
+        st.caption("Tiempo medio de ajuste por fold, recuperado de la ejecución original. No es tiempo de predicción ni de carga; depende del equipo utilizado.")
         st.subheader("Los parámetros que hacen este resultado reproducible")
         left, right = st.columns([1, 1.25])
         with left:
@@ -61,19 +65,21 @@ def comparison(data):
             with st.container(height=720, border=False):
                 st.plotly_chart(ranking_figure(visible), theme=None, width="stretch", key="complete_model_ranking")
         with right:
-            compact_table = visible[['rank','display_name','f1_macro']].copy()
+            compact_table = visible[['rank','display_name','f1_macro','fit_seconds']].copy()
             compact_table['display_name'] = '[' + visible['source'].replace({
                 'Proyecto base':'Base','Versión alternativa':'Alternativa','Versión Alejo':'Alejo'}) + '] ' + visible['display_name']
             st.dataframe(compact_table.rename(columns={
-                'rank':'Puesto','display_name':'Configuración','f1_macro':'F1 macro'}),
+                'rank':'Puesto','display_name':'Configuración','f1_macro':'F1 macro','fit_seconds':'Entrenamiento (s/fold)'}),
                 hide_index=True, width="stretch", height=720, column_config={
                     'Puesto':st.column_config.NumberColumn(width='small'),
                     'Configuración':st.column_config.TextColumn(width='medium'),
-                    'F1 macro':st.column_config.ProgressColumn(format='%.4f',min_value=0,max_value=1,width='small')})
+                    'F1 macro':st.column_config.ProgressColumn(format='%.4f',min_value=0,max_value=1,width='small'),
+                    'Entrenamiento (s/fold)':st.column_config.NumberColumn(format='%.4f',width='small')})
     else:
         st.info("Selecciona una familia para mostrar su ranking.")
     st.download_button("Descargar ranking completo", all_results.to_csv(index=False), "ranking_modelos.csv", "text/csv")
     st.caption("Desplázate dentro de la gráfica o de la tabla para ver todo el ranking. Pasa el cursor sobre una barra para ver la configuración completa. Las barras de error solo aparecen cuando la fuente guardó la desviación estándar.")
+    st.caption("Entrenamiento: segundos medios por fold ya registrados en cada proyecto. Los equipos pueden ser distintos; estos tiempos no se utilizan para elegir el ganador.")
     st.subheader("El mejor resultado de cada proyecto")
     sources = pd.DataFrame(data['source_winners'])
     st.dataframe(sources[['source','name','f1_macro']].rename(columns={"source":"Proyecto", "name":"Mejor configuración", "f1_macro":"F1 macro estándar"}), hide_index=True, width="stretch")

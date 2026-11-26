@@ -64,7 +64,8 @@ def test_complete_ranking_is_visible_and_includes_all_configurations():
     assert spec['layout']['yaxis']['autorange'] == 'reversed'
     table = at.dataframe[0].value
     assert len(table) == 116
-    assert list(table.columns) == ['Puesto', 'Configuración', 'F1 macro']
+    assert list(table.columns) == ['Puesto', 'Configuración', 'F1 macro', 'Entrenamiento (s/fold)']
+    assert abs(table.iloc[0]['Entrenamiento (s/fold)'] - 0.3102154199999859) < 1e-10
     assert table.iloc[0]['F1 macro'] == table['F1 macro'].max()
     assert any(h.value == 'Ranking completo de modelos' for h in at.subheader)
 
