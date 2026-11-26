@@ -12,14 +12,14 @@ from src.models import candidates
 
 
 def main():
-    required = ["notebooks/01_eda_y_modelado.ipynb", "app/app.py", "entregas/submission.csv",
+    required = ["notebooks/01_eda_y_modelado.ipynb", "app/app.py", "entregas/submission_Grupo_1.csv",
                 "README.md", "outputs/consolidated.json", "outputs/project_comparison.csv",
                 "presentacion/PRESENTACION_CLASE.html"]
     for name in required:
         path = ROOT / name
         assert path.is_file() and path.stat().st_size > 0, f"Falta {name}"
     train, test = load_data()
-    submission_path = ROOT / "entregas/submission.csv"
+    submission_path = ROOT / "entregas/submission_Grupo_1.csv"
     submission = pd.read_csv(submission_path)
     assert validate_submission(submission, test)
     assert len(submission) == 1300

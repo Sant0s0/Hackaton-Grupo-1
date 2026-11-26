@@ -47,7 +47,7 @@ def fingerprints():
 
 def validate_submission(submission, test):
     if list(submission.columns) != ["id", "prediction"]:
-        raise ValueError("submission.csv requiere exactamente id,prediction, en ese orden.")
+        raise ValueError("submission_Grupo_1.csv requiere exactamente id,prediction, en ese orden.")
     if len(submission) != len(test) or not submission.id.equals(test.id.reset_index(drop=True)):
         raise ValueError("Las filas y el orden de id deben coincidir con test_public_features.csv.")
     if submission.isna().any().any() or not submission.prediction.isin([0, 1]).all():

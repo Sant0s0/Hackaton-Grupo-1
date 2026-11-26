@@ -25,7 +25,7 @@ def test_final_selection_and_submission_without_fit(monkeypatch):
         assert np.isin(pipe.predict(test[FEATURES].iloc[:4]), [0, 1]).all()
     pipe = joblib.load(ROOT / "outputs" / winner['artifact'])['pipeline']
     assert pipe[:-1].transform(train[FEATURES].iloc[:1]).shape[1] == 40
-    actual = pd.read_csv(ROOT / "entregas/submission.csv")
+    actual = pd.read_csv(ROOT / "entregas/submission_Grupo_1.csv")
     validate_submission(actual, test)
     np.testing.assert_array_equal(pipe.predict(test[FEATURES]), actual.prediction)
     assert meta['import_verification']['source_submission_reproduced']

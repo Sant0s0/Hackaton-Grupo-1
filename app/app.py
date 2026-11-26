@@ -75,10 +75,10 @@ try:
     else:
         st.header("Predicciones del mejor modelo")
         winner_panel(data, compact=True)
-        frame = pd.read_csv(ROOT / "entregas/submission.csv")
+        frame = pd.read_csv(ROOT / "entregas/submission_Grupo_1.csv")
         validate_submission(frame, test)
         st.success("1.300 predicciones · id,prediction · sin nulos · orden original conservado")
-        st.download_button("Descargar submission.csv", frame.to_csv(index=False), "submission.csv", "text/csv", type="primary")
+        st.download_button("Descargar submission_Grupo_1.csv", frame.to_csv(index=False), "submission_Grupo_1.csv", "text/csv", type="primary")
 except (ValueError, FileNotFoundError) as exc:
     st.error(str(exc))
     st.info("Comprueba data/train_public.csv y data/test_public_features.csv. Luego ejecuta python scripts/entrenar.py.")

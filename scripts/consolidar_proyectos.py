@@ -143,8 +143,8 @@ FEATURE_METADATA = {name: {"default": 1.0} for name in RAW_FEATURES}
     validate_submission(final, test)
     backup = ROOT / "outputs/submission_base.csv"
     if not backup.exists():
-        shutil.copy2(ROOT / "entregas/submission.csv", backup)
-    final.to_csv(ROOT / "entregas/submission.csv", index=False)
+        shutil.copy2(ROOT / "entregas/submission_Grupo_1.csv", backup)
+    final.to_csv(ROOT / "entregas/submission_Grupo_1.csv", index=False)
     comparison = {
         "sha256": fingerprints(), "winner_id": best["id"], "models": entries,
         "source_winners": [table[table.source == origin].iloc[0].where(pd.notna(table.iloc[0]), None).to_dict()

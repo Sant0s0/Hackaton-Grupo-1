@@ -128,7 +128,7 @@ predicciones. El CSV anterior está archivado en `outputs/submission_base.csv`.
 - [Notebook ejecutado](notebooks/01_eda_y_modelado.ipynb): progresión del proyecto base
   y consolidación final con resultados existentes, sin entrenamiento adicional.
 - [Aplicación](app/app.py): comparación, ganador y simulación modular.
-- [submission.csv](entregas/submission.csv): exactamente `id,prediction`, 1.300 registros
+- [submission_Grupo_1.csv](entregas/submission_Grupo_1.csv): exactamente `id,prediction`, 1.300 registros
   más cabecera, sin nulos, clases 0/1 y orden original de test.
 - [Presentación de clase](presentacion/PRESENTACION_CLASE.html): diapositivas autónomas.
 
@@ -163,8 +163,8 @@ Abrir `app/app.py` con Streamlit. La app contiene mejor modelo, comparativa de t
 versiones, simulador modular, EDA/PCA y recorrido técnico por los seis pasos.
 README.md documenta ejecución, resultados y parámetros; la última sección de este
 cuaderno comprueba el CSV de la selección consolidada.'''
-        elif "saved = pd.read_csv(ROOT/'entregas/submission.csv')" in c.source:
-            c.source = c.source.replace("ROOT/'entregas/submission.csv'", "ROOT/'outputs/submission_base.csv'")
+        elif "saved = pd.read_csv(ROOT/'entregas/submission_Grupo_1.csv')" in c.source:
+            c.source = c.source.replace("ROOT/'entregas/submission_Grupo_1.csv'", "ROOT/'outputs/submission_base.csv'")
     if '**Actualización:**' not in nb.cells[0].source:
         nb.cells[0].source += '\n\n**Actualización:** esta primera parte documenta la progresión base. La selección final entre las tres versiones y el CSV vigente están en la última sección.'
     marker = nbf.v4.new_markdown_cell('''## Selección final entre tres proyectos
@@ -191,7 +191,7 @@ display(comparison[['source','name','f1_macro','reported_f1','adjusted_threshold
 winner = next(m for m in final['models'] if m['id'] == final['winner_id'])
 display(pd.Series({'Modelo': winner['name'], 'F1 macro estándar': winner['f1_macro'], 'Parámetros': winner['params']}))
 pipe = joblib.load(ROOT/'outputs'/winner['artifact'])['pipeline']
-submission = pd.read_csv(ROOT/'entregas/submission.csv')
+submission = pd.read_csv(ROOT/'entregas/submission_Grupo_1.csv')
 assert validate_submission(submission, test)
 np.testing.assert_array_equal(pipe.predict(test[FEATURES]), submission.prediction)
 display(submission.head())

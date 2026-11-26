@@ -136,7 +136,7 @@ def run_experiment(profile="complete", folds=5, output_dir=None):
     # Los perfiles de diagnóstico se mantienen separados de la entrega definitiva.
     delivery = ROOT / "entregas" if output_dir is None else out / "entregas"
     delivery.mkdir(parents=True, exist_ok=True)
-    submission.to_csv(delivery / "submission.csv", index=False)
+    submission.to_csv(delivery / "submission_Grupo_1.csv", index=False)
     metadata = {
         "created_utc": datetime.now(timezone.utc).isoformat(), "profile": profile,
         "seed": SEED, "folds": folds, "candidates": len(specs),

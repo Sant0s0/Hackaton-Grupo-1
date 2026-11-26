@@ -119,7 +119,7 @@ predicciones. El CSV anterior está archivado en `outputs/submission_base.csv`.
 - [Notebook ejecutado](notebooks/01_eda_y_modelado.ipynb): progresión del proyecto base
   y consolidación final con resultados existentes, sin entrenamiento adicional.
 - [Aplicación](app/app.py): comparación, ganador y simulación modular.
-- [submission.csv](entregas/submission.csv): exactamente `id,prediction`, 1.300 registros
+- [submission_Grupo_1.csv](entregas/submission_Grupo_1.csv): exactamente `id,prediction`, 1.300 registros
   más cabecera, sin nulos, clases 0/1 y orden original de test.
 - [Presentación de clase](presentacion/PRESENTACION_CLASE.html): diapositivas autónomas.
 
