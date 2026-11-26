@@ -93,5 +93,6 @@ Coseno 1−cos es disimilitud y no una métrica estricta. SVM expone puntaje, no
 7. No inventar integrantes, historial colaborativo, publicaciones, ranking ni F1 oculto.
    Los nombres reales del equipo y destino de GitHub deben venir del usuario.
 
-El launcher `iniciar_app.bat` abre Streamlit en localhost. El proyecto es una
-aplicación educativa local; no se ha autorizado publicación de datos en servicios ajenos.
+El launcher `iniciar_app.bat` abre Streamlit en localhost. El usuario autorizó integrar
+la entrega en el repositorio GitHub indicado. No ha solicitado desplegar la aplicación
+en otro servicio ni enviar mensajes a la profesora o a otros integrantes.
