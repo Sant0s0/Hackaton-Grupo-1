@@ -53,6 +53,7 @@ def results_table(frame):
 
 
 def main():
+    (ROOT / "docs/grupo").mkdir(parents=True, exist_ok=True)
     train, test = load_data()
     meta = json.loads((ROOT / "outputs/experiment.json").read_text(encoding="utf-8"))
     audit = json.loads((ROOT / "outputs/data_audit.json").read_text(encoding="utf-8"))
@@ -76,9 +77,10 @@ def main():
     confusion_fig = figure(confusion_figure(meta["oof_confusion_matrix"]),
         f"Predicciones fuera de fold del ganador: {tn:,} TN, {fp:,} FP, {fn:,} FN y {tp:,} TP.", "confusion.png")
     body = f"""
-<div class="eyebrow">GRUPO 1 · DOCUMENTO DE EXPLICACIÓN Y DEFENSA</div>
+<div class="eyebrow">GRUPO 1 · MATERIAL INTERNO DE ESTUDIO</div>
 <h1>De las mediciones del vino<br>a una decisión de calidad</h1>
 <p class="lead">Qué se hizo en cada punto de la guía, por qué se hizo así y cómo se conecta con las clases del semestre.</p>
+<div class="note">Este documento es para preparar al equipo. Las diapositivas para la clase están en <a href="../../presentacion/PRESENTACION_CLASE.html">PRESENTACION_CLASE.html</a> y la aplicación se abre por separado. El <a href="GUION_EXPOSICION.html">guion de exposición</a> también es material del grupo.</div>
 <p>{' · '.join(TEAM)}</p><p><a href="{REPO}">Repositorio de Grupo 1</a></p>
 <p class="print"><button onclick="window.print()">Imprimir o guardar como PDF</button></p>
 <div class="result"><strong>Resultado medido:</strong> el mejor candidato de los {meta['candidates']} evaluados fue k-NN con 11 vecinos, disimilitud coseno, votación ponderada por distancia y tres cocientes. F1 macro por CV: <strong>{winner.f1_macro_mean:.4f} ± {winner.f1_macro_std:.4f}</strong>. El puntaje del test oculto todavía no se conoce.</div>
@@ -165,10 +167,11 @@ def main():
 <h2 id="entregables">4. Entregables obligatorios y ubicación</h2>
 <table><tr><th>Guía, sección 4</th><th>Archivo</th><th>Cómo se comprueba</th></tr>
 <tr><td>Notebook limpio, comentado y ejecutado</td><td>notebooks/01_eda_y_modelado.ipynb</td><td>EDA, baseline reejecutado, PCA, resultados completos y controles SVM/MLP; celdas con salidas reales</td></tr>
-<tr><td>Streamlit funcional</td><td>app/app.py y app/modules/</td><td>Seis pasos, al menos dos figuras EDA/PCA, tabla de modelos y predicción interactiva</td></tr>
+<tr><td>Streamlit funcional</td><td>app/app.py y app/modules/</td><td>Seis módulos, figuras EDA/PCA, tabla de modelos y predicción interactiva; sin guion ni documentos internos</td></tr>
 <tr><td>Predicciones</td><td>entregas/submission.csv</td><td>Exactamente id,prediction; 1.300 registros más cabecera, sin nulos y con orden conservado</td></tr>
 <tr><td>Resumen y tabla de CV</td><td>README.md</td><td>Instalación, enfoque matemático, resultados medidos y límites</td></tr>
-<tr><td>Explicación solicitada por el equipo</td><td>docs/EXPLICACION.html y docs/PITCH.html</td><td>Lectura sin internet; botón de impresión a PDF; defensa de cinco minutos</td></tr>
+<tr><td>Presentación para clase</td><td>presentacion/PRESENTACION_CLASE.html</td><td>Ocho diapositivas independientes, navegación con flechas, pantalla completa e impresión a PDF</td></tr>
+<tr><td>Preparación interna del equipo</td><td>docs/grupo/EXPLICACION.html y docs/grupo/GUION_EXPOSICION.html</td><td>Justificaciones, preguntas de defensa y guion; no se muestran dentro de la app</td></tr>
 <tr><td>Continuidad para asistentes IA</td><td>CONTEXT.md y AGENTS.md</td><td>Fuentes, reglas, arquitectura y comandos para continuar sin perder contexto</td></tr></table>
 <p>El repositorio de destino es <a href="{REPO}">Hackaton-Grupo-1</a>. El historial debe registrar las contribuciones reales. Los roles y commits de los demás integrantes no se simulan. El archivo CSV se valida automáticamente antes de exportarse.</p>
 
@@ -178,10 +181,14 @@ def main():
 <tr><td>Progresión de modelos</td><td>25%</td><td>Baselines, ablation ratios/PCA, SVM y MLP; F1 y tiempos con folds comunes</td></tr>
 <tr><td>Desempeño oculto</td><td>25%</td><td>submission válido; puntaje y ranking dependen de la evaluación docente</td></tr>
 <tr><td>App y orden en GitHub</td><td>15%</td><td>Módulos y estructura solicitada; colaboración real debe constar en GitHub</td></tr>
-<tr><td>Pitch y defensa</td><td>15%</td><td>Guion en docs/PITCH.html; la exposición y preguntas corresponden al equipo</td></tr></table>
+<tr><td>Pitch y defensa</td><td>15%</td><td>Guion en docs/grupo/GUION_EXPOSICION.html; la exposición y preguntas corresponden al equipo</td></tr></table>
 
 <h2 id="uso">Cómo usar la aplicación, sin leer el código</h2>
-<ol><li>Abre <code>iniciar_app.bat</code> en Windows o ejecuta el comando Streamlit del README.</li><li>Recorre «Paso de la guía» de 1 a 6 para seguir la explicación oficial.</li><li>Para ir directo a un algoritmo, usa «¿Qué método quieres usar?»; se abrirá su paso correspondiente.</li><li>Escoge una configuración ya evaluada. F1 macro y su desviación corresponden a sus cinco folds.</li><li>Si quieres experimentar, activa «Ajustar parámetros del método». Puedes evaluar esa configuración por separado; esto no sustituye el ganador guardado.</li><li>Introduce las once mediciones y pulsa «Predecir calidad». La MLP produce una estimación no calibrada; k-NN muestra votos, k-means proporción del clúster y SVM un puntaje de decisión.</li><li>En el paso 6 descarga el CSV de la entrega o el documento explicativo. El CSV corresponde al ganador reproducible, no a una prueba manual aislada.</li></ol>
+<ol><li>Abre <code>iniciar_app.bat</code> en Windows o ejecuta el comando Streamlit del README.</li><li>Recorre «Módulo» de 1 a 6 para explorar los datos y resultados.</li><li>Para ir directo a un algoritmo, usa «¿Qué método quieres usar?».</li><li>Escoge una configuración ya evaluada. F1 macro y su desviación corresponden a sus cinco folds.</li><li>Si quieres experimentar, activa «Ajustar parámetros del método». Evaluar cinco folds vuelve a entrenar y puede tardar; no es necesario para mostrar predicciones.</li><li>Introduce las once mediciones y pulsa «Predecir calidad». La MLP produce una estimación no calibrada; k-NN muestra votos, k-means proporción del clúster y SVM un puntaje de decisión.</li><li>En el módulo 6 descarga el CSV de la entrega. El CSV corresponde al ganador reproducible, no a una prueba manual aislada.</li></ol>
+<h3>¿Cómo evitamos entrenar durante la exposición?</h3>
+<p>Los archivos <code>.joblib</code> guardan el pipeline completo: ratios, imputación, escalado, PCA o centroides cuando corresponden y el clasificador aprendido. <code>scripts/preparar_demo.py</code> prepara las 79 configuraciones evaluadas una vez. La aplicación las carga de disco y las conserva además en memoria con caché.</p>
+<p>Cerrar y volver a abrir la app no obliga a entrenarlas de nuevo. Si se cambian parámetros a una configuración inédita, el primer ajuste puede tardar; después también queda guardado. Cambiar los datos o la versión de scikit-learn invalida esos archivos y requiere prepararlos de nuevo. Para presentar, conviene elegir configuraciones evaluadas y evitar el botón de evaluación de cinco folds.</p>
+<div class="note">La comparación futura entre tres proyectos todavía no se ha realizado. La carpeta <code>Hackathon_MMMIA_Grupo1 (1)</code> se conserva sin analizar ni integrar; los resultados de este documento pertenecen únicamente al proyecto actual.</div>
 
 <h2 id="fuentes">Conexión con las clases del semestre</h2>
 <p>Se revisaron los 13 materiales de clase y guía proporcionados. Los PDF de SVM y geometría neuronal, así como las páginas gráficas de Deep Learning, se revisaron visualmente. No se abrieron los enlaces externos de Colab/Drive: estas referencias se limitan a los archivos locales.</p>
@@ -207,10 +214,11 @@ def main():
 <h3>¿El puntaje SVM es confianza porcentual?</h3><p>No. Es una función de decisión con umbral 0. En SVC no se muestra como distancia euclidiana normalizada ni se convierte a porcentaje aplicando sigmoide sin calibración.</p>
 <h3>¿Ya sabemos que superamos a la profesora?</h3><p>No. Tenemos un CSV válido y un resultado de validación. El baseline docente, las etiquetas del test y el ranking no están disponibles. Solo la evaluación oficial resuelve esa parte de la rúbrica.</p>
 """
-    (ROOT / "docs/EXPLICACION.html").write_text(shell("Grupo 1 · Explicación del hackathon", body), encoding="utf-8")
+    (ROOT / "docs/grupo/EXPLICACION.html").write_text(shell("Grupo 1 · Explicación del hackathon", body), encoding="utf-8")
 
-    pitch = f"""<div class="eyebrow">GRUPO 1 · GUION DE DEFENSA</div><h1>Cinco minutos para explicar el trabajo</h1>
+    pitch = f"""<div class="eyebrow">GRUPO 1 · GUION INTERNO DE EXPOSICIÓN</div><h1>Cinco minutos para explicar el trabajo</h1>
 <p class="lead">Apoyo para hablar con sus propias palabras. Distribuyan las intervenciones según el trabajo real del equipo.</p>
+<div class="note">Este guion es para el equipo. Proyectar <a href="../../presentacion/PRESENTACION_CLASE.html">las ocho diapositivas de clase</a>; la demostración de la aplicación se abre por separado. El guion no aparece en la app ni en las diapositivas.</div>
 <p class="print"><button onclick="window.print()">Imprimir o guardar como PDF</button></p>
 <h2>0:00–0:40 · Problema y métrica</h2><p>«Clasificamos vinos estándar y superiores usando once mediciones. Aprendemos con 5.197 muestras y predecimos 1.300. Como solo el 15,93% del entrenamiento es superior, usamos F1 macro: la clase minoritaria cuenta tanto como la mayoritaria».</p>
 <h2>0:40–1:30 · EDA y representación</h2><p>«No encontramos nulos. Las escalas son muy distintas: densidad cerca de uno frente a SO₂ total hasta 440. Por eso escalamos dentro de cada fold. Conservamos valores extremos sin evidencia de error y añadimos tres cocientes: acidez fija/volátil, SO₂ libre/total y alcohol/densidad».</p>
@@ -229,7 +237,7 @@ def main():
 <tr><td>¿Hay convergencia garantizada?</td><td>No. Se conservan los avisos de ajuste y se informa el límite de iteraciones.</td></tr>
 <tr><td>¿La CV es imparcial después de elegir?</td><td>Puede ser optimista al seleccionar entre 79 candidatos; el test oculto queda separado.</td></tr></table>
 <p><a href="EXPLICACION.html">Abrir la explicación completa</a> · <a href="{REPO}">Repositorio</a></p>"""
-    (ROOT / "docs/PITCH.html").write_text(shell("Grupo 1 · Pitch de cinco minutos", pitch), encoding="utf-8")
+    (ROOT / "docs/grupo/GUION_EXPOSICION.html").write_text(shell("Grupo 1 · Pitch de cinco minutos", pitch), encoding="utf-8")
 
     table_md = "| Configuración | F1 macro | Desv. folds | F1 superior | Ajuste s/fold | Predicción s/fold |\n|---|---:|---:|---:|---:|---:|\n"
     for _, row in representative.iterrows():
@@ -253,11 +261,16 @@ El control agrupando perfiles idénticos dio **{grouped:.4f}**. El **F1 del test
 
 ## Empezar aquí
 
-- [Documento explicado paso a paso](docs/EXPLICACION.html): qué se hizo, por qué,
+- **Para mostrar en clase:** [presentación de ocho diapositivas](presentacion/PRESENTACION_CLASE.html)
+  y aplicación VinoLab. Abre `abrir_presentacion.bat` para las diapositivas e
+  `iniciar_app.bat` para la app; son independientes.
+- **Para preparar al grupo:** carpeta `docs/grupo/`. Abre `abrir_material_grupo.bat`
+  para estudiar la explicación. El guion y las respuestas de defensa quedan fuera de la app.
+- [Documento explicado paso a paso](docs/grupo/EXPLICACION.html): qué se hizo, por qué,
   resultados, rúbrica y conexión con todas las clases. Abrir en navegador; funciona
   sin internet y tiene botón para imprimir o guardar como PDF.
 - [Notebook ejecutado](notebooks/01_eda_y_modelado.ipynb): código, gráficas y salidas reales.
-- [Guion de pitch de 5 minutos](docs/PITCH.html).
+- [Guion interno de exposición de 5 minutos](docs/grupo/GUION_EXPOSICION.html).
 - [Contexto para otras IA](CONTEXT.md) y [reglas del repositorio](AGENTS.md).
 - [CSV de entrega](entregas/submission.csv).
 
@@ -286,14 +299,19 @@ la aplicación no necesita enviar los CSV a un servicio externo.
 
 ### Navegación y métodos
 
-La barra lateral contiene «Paso de la guía» y «¿Qué método quieres usar?». Los pasos son:
+La barra lateral contiene «Módulo» y «¿Qué método quieres usar?». Mantiene el orden
+de la guía para los contenidos técnicos, con estos módulos:
 
-1. **Configuración y roles**: problema, datos y distribución sugerida de responsabilidades.
+1. **Resumen del proyecto**: problema, datos y métodos disponibles.
 2. **EDA y limpieza**: desbalance, correlaciones, distribuciones y extremos IQR.
 3. **Baseline por distancias**: k-NN y k-means; configuraciones, métricas y simulador.
 4. **Variables nuevas y PCA**: tres ratios, comparación controlada y proyecciones.
 5. **SVM y MLP**: SVM lineal/polinomial/RBF y redes, con parámetros ajustables.
-6. **Entrega y pitch**: tabla completa, diagnóstico agrupado, CSV y simulador ganador.
+6. **Resultados y predicciones**: tabla completa, diagnóstico agrupado, CSV y simulador ganador.
+
+La app no contiene guiones, reparto de roles ni descargas del material interno.
+Las diapositivas tienen flechas, pantalla completa (F o F11) y un botón para imprimir
+o guardar como PDF. Funcionan sin internet y no requieren ejecutar Streamlit.
 
 Puedes escoger cualquier método directamente. k-NN permite Euclidiana, Manhattan,
 Minkowski y coseno. En cada panel se puede elegir una configuración evaluada o activar
@@ -303,6 +321,29 @@ resultados completos ni cambia `entregas/submission.csv`.
 El simulador recibe **once mediciones**, no id ni target. SVM muestra su función de
 decisión con umbral 0; k-NN muestra votos ponderados; k-means proporción en el clúster;
 MLP una estimación de salida. Ninguna se presenta como probabilidad calibrada.
+
+### Modelos guardados y rapidez durante la presentación
+
+Sí: los modelos pueden guardarse. Inicialmente se guardaron seis representantes en
+`outputs/model_*.joblib`. Además, se prepararon las **79 configuraciones evaluadas**
+en `outputs/demo_models/`, con índice en `manifest.json`. Cada archivo contiene el
+pipeline completo y se comprueban sus parámetros, el hash de entrenamiento y la
+versión de scikit-learn antes de reutilizarlo.
+
+La app carga estos archivos y usa caché de memoria: **seleccionar una configuración
+evaluada y predecir no vuelve a entrenar**. Los ajustes personalizados nuevos sí
+necesitan una primera preparación, que después se guarda. El botón «Evaluar esta
+configuración con 5 folds» vuelve a entrenar y conviene usarlo antes de exponer.
+
+Para preparar la demo en otro equipo o tras cambiar datos/versiones:
+
+```powershell
+.\\.venv\\Scripts\\python.exe scripts/preparar_demo.py
+```
+
+Esto no repite la búsqueda cruzada, no cambia las métricas y no sustituye el CSV final.
+Cerrar la app no borra los archivos de modelos. Mantén `src/`, los datos y las
+versiones compatibles junto con esos archivos al trasladar el proyecto.
 
 ## Datos y comprobaciones
 
@@ -386,6 +427,8 @@ resultado; no atribuimos la mejora total solo a esas variables.
 ```powershell
 .\\.venv\\Scripts\\python.exe scripts/entrenar.py --profile complete
 .\\.venv\\Scripts\\python.exe scripts/crear_documentacion.py
+.\\.venv\\Scripts\\python.exe scripts/crear_presentacion.py
+.\\.venv\\Scripts\\python.exe scripts/preparar_demo.py
 .\\.venv\\Scripts\\python.exe scripts/crear_notebook.py --execute
 .\\.venv\\Scripts\\python.exe -m pytest tests -q
 .\\.venv\\Scripts\\python.exe scripts/verificar_entrega.py
@@ -422,13 +465,15 @@ app/app.py                      Entrada Streamlit
 app/common.py                   Selección, parámetros, métricas y simulador
 app/modules/                    Un módulo por paso de la guía
 data/                           CSV originales copiados
-docs/EXPLICACION.html            Documento autónomo y trazabilidad con clases
-docs/PITCH.html                  Guion y preguntas de defensa
+presentacion/PRESENTACION_CLASE.html Diapositivas para mostrar a la clase
+docs/grupo/EXPLICACION.html            Documento autónomo y trazabilidad con clases
+docs/grupo/GUION_EXPOSICION.html  Guion y preguntas para uso del equipo
 entregas/submission.csv          Predicciones listas para evaluación docente
 notebooks/01_eda_y_modelado.ipynb Notebook ejecutado
 src/                            Datos, features, modelos, evaluación y gráficas
 scripts/                        Entrenamiento, generación y verificación
 outputs/                        Métricas, auditoría, figuras y modelos finales
+outputs/demo_models/            79 pipelines preparados para la demo
 tests/                          Fuga de datos, contratos y pruebas Streamlit
 CONTEXT.md                      Contexto para otras IA
 AGENTS.md                       Reglas de mantenimiento
@@ -447,6 +492,10 @@ como contexto del semestre, pero quedan fuera de la lista de herramientas de est
 
 ## Entrega en GitHub y responsabilidades
 
+La carpeta añadida `Hackathon_MMMIA_Grupo1 (1)` no se modifica, analiza ni integra.
+La comparación entre tres proyectos y la selección de sus mejores modelos quedan
+para una etapa posterior. Los resultados actuales son solo de este proyecto.
+
 Destino: [Hackaton-Grupo-1]({REPO}), rama `main`. Deben estar los cuatro archivos
 obligatorios en sus rutas exactas. Los materiales de la profesora no se redistribuyen
 en el repositorio: se incluyen las referencias y las copias de los CSV de trabajo.
@@ -457,7 +506,7 @@ otros integrantes ni se asignan responsabilidades ficticias. El desempeño ocult
 defensa oral son partes de la rúbrica que debe evaluar la profesora.
 """
     (ROOT / "README.md").write_text(readme, encoding="utf-8")
-    print("README.md, docs/EXPLICACION.html y docs/PITCH.html actualizados con resultados reales.")
+    print("README.md, docs/grupo/EXPLICACION.html y docs/grupo/GUION_EXPOSICION.html actualizados con resultados reales.")
 
 
 if __name__ == "__main__":

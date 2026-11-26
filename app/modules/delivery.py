@@ -7,7 +7,7 @@ from src.plots import confusion_figure
 
 
 def render(train, test, results, meta, specs, method):
-    st.header("6 · Comparación, entrega y pitch")
+    st.header("6 · Resultados y predicciones")
     if results.empty or not meta:
         st.info("Ejecuta python scripts/entrenar.py para generar la entrega.")
         return
@@ -29,8 +29,3 @@ def render(train, test, results, meta, specs, method):
     st.download_button("Descargar submission.csv", submission.to_csv(index=False), "submission.csv", "text/csv", type="primary")
     st.subheader("Simulador del modelo entregado")
     model_panel([Candidate(**meta["best"])], results, train, meta, "winner")
-    st.subheader("Material para entender y defender el trabajo")
-    for path, title in [(ROOT / "docs/EXPLICACION.html", "Documento explicado paso a paso"),
-                        (ROOT / "docs/PITCH.html", "Guion del pitch de cinco minutos")]:
-        if path.exists():
-            st.download_button(title, path.read_bytes(), path.name, "text/html")

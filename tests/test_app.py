@@ -38,3 +38,13 @@ def test_custom_parameters_and_navigation_reset():
     at.radio(key="step").set_value(at.radio(key="step").options[1]).run()
     assert not at.exception
     assert at.selectbox(key="method").value == "Seguir el paso seleccionado"
+
+
+def test_app_keeps_group_material_out_of_the_demonstration():
+    at = AppTest.from_file(str(ROOT / "app/app.py"), default_timeout=30).run()
+    for index in (0, 5):
+        at.radio(key="step").set_value(at.radio(key="step").options[index]).run()
+        assert not at.exception
+        visible = " ".join(item.value for collection in [at.markdown, at.header, at.subheader, at.caption]
+                           for item in collection)
+        assert all(word not in visible.lower() for word in ["guion", "pitch", "responsabilidades", "docs/grupo"])

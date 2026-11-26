@@ -1,0 +1,1481 @@
+{
+  "sha256": {
+    "train_public.csv": "73a774f51fc708e0f07a1595fe92bea93957f5ea83cf2f56efc6ea1c9e9f508d",
+    "test_public_features.csv": "cd2d9cd2052f93452f055deb478a3bb8ce067e33d652dada5b6b735126a27d49"
+  },
+  "sklearn_version": "1.9.1",
+  "models": {
+    "base_knn_k3_euclidean": {
+      "file": "model_0045ed141237988e826afb14.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "base_knn_k3_euclidean",
+        "params": {
+          "metric": "euclidean",
+          "n_neighbors": 3
+        },
+        "pca": null,
+        "ratios": false,
+        "stage": 3
+      },
+      "fit_warnings": []
+    },
+    "base_knn_k3_manhattan": {
+      "file": "model_868d841522fac5d5bc8ea611.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "base_knn_k3_manhattan",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 3
+        },
+        "pca": null,
+        "ratios": false,
+        "stage": 3
+      },
+      "fit_warnings": []
+    },
+    "base_knn_k5_euclidean": {
+      "file": "model_065734bba2bb5a04aa4c9a61.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "base_knn_k5_euclidean",
+        "params": {
+          "metric": "euclidean",
+          "n_neighbors": 5
+        },
+        "pca": null,
+        "ratios": false,
+        "stage": 3
+      },
+      "fit_warnings": []
+    },
+    "base_knn_k5_manhattan": {
+      "file": "model_32e1e5dcf911839d79af88bc.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "base_knn_k5_manhattan",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 5
+        },
+        "pca": null,
+        "ratios": false,
+        "stage": 3
+      },
+      "fit_warnings": []
+    },
+    "base_knn_k7_euclidean": {
+      "file": "model_137970a5f04b845dd6f75840.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "base_knn_k7_euclidean",
+        "params": {
+          "metric": "euclidean",
+          "n_neighbors": 7
+        },
+        "pca": null,
+        "ratios": false,
+        "stage": 3
+      },
+      "fit_warnings": []
+    },
+    "base_knn_k7_manhattan": {
+      "file": "model_e2d20eae8cf0535ab26e3ba3.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "base_knn_k7_manhattan",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 7
+        },
+        "pca": null,
+        "ratios": false,
+        "stage": 3
+      },
+      "fit_warnings": []
+    },
+    "base_kmeans_2": {
+      "file": "model_1ff9b300715dd319d6bfaa77.joblib",
+      "spec": {
+        "name": "base_kmeans_2",
+        "stage": 3,
+        "family": "k-means",
+        "params": {
+          "n_clusters": 2
+        },
+        "ratios": false,
+        "pca": null,
+        "centroids": null
+      },
+      "fit_warnings": []
+    },
+    "base_kmeans_16": {
+      "file": "model_ece3830827bb1eafffa97584.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-means",
+        "name": "base_kmeans_16",
+        "params": {
+          "n_clusters": 16
+        },
+        "pca": null,
+        "ratios": false,
+        "stage": 3
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k5_manhattan": {
+      "file": "model_bef53f3de99ec91bc83ccf63.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k5_manhattan",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 5
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "pca0.9_knn_k5_manhattan": {
+      "file": "model_0da6143b6249fd9f77648623.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "pca0.9_knn_k5_manhattan",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 5
+        },
+        "pca": 0.9,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "pca0.95_knn_k5_manhattan": {
+      "file": "model_83b849b4d003594e27a6ea09.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "pca0.95_knn_k5_manhattan",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 5
+        },
+        "pca": 0.95,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k3_euclidean_distance": {
+      "file": "model_15662922a67b821d2030f1bb.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k3_euclidean_distance",
+        "params": {
+          "metric": "euclidean",
+          "n_neighbors": 3,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k5_euclidean_distance": {
+      "file": "model_1a101272551252b207854f5c.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k5_euclidean_distance",
+        "params": {
+          "metric": "euclidean",
+          "n_neighbors": 5,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k7_euclidean_distance": {
+      "file": "model_edd28d431e9a59e255c2585d.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k7_euclidean_distance",
+        "params": {
+          "metric": "euclidean",
+          "n_neighbors": 7,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k11_euclidean_distance": {
+      "file": "model_fb9161d6ec4edaffe37f3b0e.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k11_euclidean_distance",
+        "params": {
+          "metric": "euclidean",
+          "n_neighbors": 11,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k3_manhattan_distance": {
+      "file": "model_7ef0240035bd3df99ee75f7a.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k3_manhattan_distance",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 3,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k5_manhattan_distance": {
+      "file": "model_9932fb2f7156b905bc1eb60e.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k5_manhattan_distance",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 5,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k7_manhattan_distance": {
+      "file": "model_a0d6d15aa9406041b1dd5dfc.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k7_manhattan_distance",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 7,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k11_manhattan_distance": {
+      "file": "model_404293ba4437938c36d0b3ee.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k11_manhattan_distance",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 11,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k3_minkowski_distance": {
+      "file": "model_6f20b91e208bfda9c8ec9ed4.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k3_minkowski_distance",
+        "params": {
+          "metric": "minkowski",
+          "n_neighbors": 3,
+          "p": 3,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k5_minkowski_distance": {
+      "file": "model_ddbd58d95107eaae944bc845.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k5_minkowski_distance",
+        "params": {
+          "metric": "minkowski",
+          "n_neighbors": 5,
+          "p": 3,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k7_minkowski_distance": {
+      "file": "model_610aa0050ce7febac397e46a.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k7_minkowski_distance",
+        "params": {
+          "metric": "minkowski",
+          "n_neighbors": 7,
+          "p": 3,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k11_minkowski_distance": {
+      "file": "model_b9ee74d8bdaa29ba5d108b82.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k11_minkowski_distance",
+        "params": {
+          "metric": "minkowski",
+          "n_neighbors": 11,
+          "p": 3,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k3_cosine_distance": {
+      "file": "model_e15feb5a0b97c3b7e0741835.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k3_cosine_distance",
+        "params": {
+          "metric": "cosine",
+          "n_neighbors": 3,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k5_cosine_distance": {
+      "file": "model_23c006b79acd4e9d3def7b53.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k5_cosine_distance",
+        "params": {
+          "metric": "cosine",
+          "n_neighbors": 5,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k7_cosine_distance": {
+      "file": "model_108e3b53a5a2885cf484f1c5.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "k-NN",
+        "name": "fe_knn_k7_cosine_distance",
+        "params": {
+          "metric": "cosine",
+          "n_neighbors": 7,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "fe_knn_k11_cosine_distance": {
+      "file": "model_f6f5cd13f176c4632f4b130e.joblib",
+      "spec": {
+        "name": "fe_knn_k11_cosine_distance",
+        "stage": 4,
+        "family": "k-NN",
+        "params": {
+          "n_neighbors": 11,
+          "metric": "cosine",
+          "weights": "distance"
+        },
+        "ratios": true,
+        "pca": null,
+        "centroids": null
+      },
+      "fit_warnings": []
+    },
+    "centroids8_knn": {
+      "file": "model_75093ba6d4da5d3dd00f54f8.joblib",
+      "spec": {
+        "centroids": 8,
+        "family": "k-NN",
+        "name": "centroids8_knn",
+        "params": {
+          "metric": "manhattan",
+          "n_neighbors": 5,
+          "weights": "distance"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 4
+      },
+      "fit_warnings": []
+    },
+    "svm_linear_C0.1_gscale_wNone": {
+      "file": "model_11ab999cd336e8a845e1d321.joblib",
+      "spec": {
+        "name": "svm_linear_C0.1_gscale_wNone",
+        "stage": 5,
+        "family": "SVM",
+        "params": {
+          "kernel": "linear",
+          "C": 0.1,
+          "gamma": "scale",
+          "class_weight": null
+        },
+        "ratios": true,
+        "pca": null,
+        "centroids": null
+      },
+      "fit_warnings": []
+    },
+    "svm_linear_C0.1_gscale_wbalanced": {
+      "file": "model_3542a8d5a5f42c1fb8fda286.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_linear_C0.1_gscale_wbalanced",
+        "params": {
+          "C": 0.1,
+          "class_weight": "balanced",
+          "gamma": "scale",
+          "kernel": "linear"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_linear_C1_gscale_wNone": {
+      "file": "model_fa83f110d49c503192c2b8b2.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_linear_C1_gscale_wNone",
+        "params": {
+          "C": 1,
+          "class_weight": null,
+          "gamma": "scale",
+          "kernel": "linear"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_linear_C1_gscale_wbalanced": {
+      "file": "model_14559e766ddd672a5b8d291b.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_linear_C1_gscale_wbalanced",
+        "params": {
+          "C": 1,
+          "class_weight": "balanced",
+          "gamma": "scale",
+          "kernel": "linear"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_linear_C10_gscale_wNone": {
+      "file": "model_3689866d97f0eea41b5331c1.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_linear_C10_gscale_wNone",
+        "params": {
+          "C": 10,
+          "class_weight": null,
+          "gamma": "scale",
+          "kernel": "linear"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_linear_C10_gscale_wbalanced": {
+      "file": "model_933c018271eda7e2e6e8cf66.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_linear_C10_gscale_wbalanced",
+        "params": {
+          "C": 10,
+          "class_weight": "balanced",
+          "gamma": "scale",
+          "kernel": "linear"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_poly_C1_gscale_wNone": {
+      "file": "model_6f63a94487b9d8460c8639be.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_poly_C1_gscale_wNone",
+        "params": {
+          "C": 1,
+          "class_weight": null,
+          "degree": 3,
+          "gamma": "scale",
+          "kernel": "poly"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_poly_C1_gscale_wbalanced": {
+      "file": "model_2f80a118d07250363165f77e.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_poly_C1_gscale_wbalanced",
+        "params": {
+          "C": 1,
+          "class_weight": "balanced",
+          "degree": 3,
+          "gamma": "scale",
+          "kernel": "poly"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_poly_C10_gscale_wNone": {
+      "file": "model_616d54be1fdde9fccb4c6aa1.joblib",
+      "spec": {
+        "name": "svm_poly_C10_gscale_wNone",
+        "stage": 5,
+        "family": "SVM",
+        "params": {
+          "kernel": "poly",
+          "C": 10,
+          "gamma": "scale",
+          "class_weight": null,
+          "degree": 3
+        },
+        "ratios": true,
+        "pca": null,
+        "centroids": null
+      },
+      "fit_warnings": []
+    },
+    "svm_poly_C10_gscale_wbalanced": {
+      "file": "model_e8f203302e29ae2451a9f8ef.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_poly_C10_gscale_wbalanced",
+        "params": {
+          "C": 10,
+          "class_weight": "balanced",
+          "degree": 3,
+          "gamma": "scale",
+          "kernel": "poly"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_poly_C100_gscale_wNone": {
+      "file": "model_b8050cb57fa415025be1edb9.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_poly_C100_gscale_wNone",
+        "params": {
+          "C": 100,
+          "class_weight": null,
+          "degree": 3,
+          "gamma": "scale",
+          "kernel": "poly"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_poly_C100_gscale_wbalanced": {
+      "file": "model_8d6fe9e9e3143113d7d9a692.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_poly_C100_gscale_wbalanced",
+        "params": {
+          "C": 100,
+          "class_weight": "balanced",
+          "degree": 3,
+          "gamma": "scale",
+          "kernel": "poly"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C1_gscale_wNone": {
+      "file": "model_8514d40681aa39b2bf956ead.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C1_gscale_wNone",
+        "params": {
+          "C": 1,
+          "class_weight": null,
+          "gamma": "scale",
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C1_g0.03_wNone": {
+      "file": "model_32f5811a7d4fdb5746cd659b.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C1_g0.03_wNone",
+        "params": {
+          "C": 1,
+          "class_weight": null,
+          "gamma": 0.03,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C1_g0.1_wNone": {
+      "file": "model_e60c701ee7c11b39d4ef7c8d.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C1_g0.1_wNone",
+        "params": {
+          "C": 1,
+          "class_weight": null,
+          "gamma": 0.1,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C1_gscale_wbalanced": {
+      "file": "model_9a6b9fefaa862901271a539a.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C1_gscale_wbalanced",
+        "params": {
+          "C": 1,
+          "class_weight": "balanced",
+          "gamma": "scale",
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C1_g0.03_wbalanced": {
+      "file": "model_924a4c3eb733cb80a211533f.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C1_g0.03_wbalanced",
+        "params": {
+          "C": 1,
+          "class_weight": "balanced",
+          "gamma": 0.03,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C1_g0.1_wbalanced": {
+      "file": "model_5b53e0154064ad74647ab929.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C1_g0.1_wbalanced",
+        "params": {
+          "C": 1,
+          "class_weight": "balanced",
+          "gamma": 0.1,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C10_gscale_wNone": {
+      "file": "model_d86efc3dd58fdbfd816760ee.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C10_gscale_wNone",
+        "params": {
+          "C": 10,
+          "class_weight": null,
+          "gamma": "scale",
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C10_g0.03_wNone": {
+      "file": "model_c5bc98410993e9af7839e8b2.joblib",
+      "spec": {
+        "name": "svm_rbf_C10_g0.03_wNone",
+        "stage": 5,
+        "family": "SVM",
+        "params": {
+          "kernel": "rbf",
+          "C": 10,
+          "gamma": 0.03,
+          "class_weight": null
+        },
+        "ratios": true,
+        "pca": null,
+        "centroids": null
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C10_g0.1_wNone": {
+      "file": "model_0ae319b86b40b60862ebf4b3.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C10_g0.1_wNone",
+        "params": {
+          "C": 10,
+          "class_weight": null,
+          "gamma": 0.1,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C10_gscale_wbalanced": {
+      "file": "model_8bbf191cd6067cf73b1f386d.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C10_gscale_wbalanced",
+        "params": {
+          "C": 10,
+          "class_weight": "balanced",
+          "gamma": "scale",
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C10_g0.03_wbalanced": {
+      "file": "model_afc17ed9f77bdd123ec4e51b.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C10_g0.03_wbalanced",
+        "params": {
+          "C": 10,
+          "class_weight": "balanced",
+          "gamma": 0.03,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C10_g0.1_wbalanced": {
+      "file": "model_d83d3902806587b47bd0b849.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C10_g0.1_wbalanced",
+        "params": {
+          "C": 10,
+          "class_weight": "balanced",
+          "gamma": 0.1,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C100_gscale_wNone": {
+      "file": "model_ffdceac8c26779d408591239.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C100_gscale_wNone",
+        "params": {
+          "C": 100,
+          "class_weight": null,
+          "gamma": "scale",
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C100_g0.03_wNone": {
+      "file": "model_db5770bfb8a1dd36a0ce2340.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C100_g0.03_wNone",
+        "params": {
+          "C": 100,
+          "class_weight": null,
+          "gamma": 0.03,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C100_g0.1_wNone": {
+      "file": "model_a6bac7b00283dc0e81fec9af.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C100_g0.1_wNone",
+        "params": {
+          "C": 100,
+          "class_weight": null,
+          "gamma": 0.1,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C100_gscale_wbalanced": {
+      "file": "model_0329b50645c252d68da747ca.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C100_gscale_wbalanced",
+        "params": {
+          "C": 100,
+          "class_weight": "balanced",
+          "gamma": "scale",
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C100_g0.03_wbalanced": {
+      "file": "model_3a67a3cedb6a2775c05375f5.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C100_g0.03_wbalanced",
+        "params": {
+          "C": 100,
+          "class_weight": "balanced",
+          "gamma": 0.03,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "svm_rbf_C100_g0.1_wbalanced": {
+      "file": "model_b7658bf77adeeb1bfd40a439.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "svm_rbf_C100_g0.1_wbalanced",
+        "params": {
+          "C": 100,
+          "class_weight": "balanced",
+          "gamma": 0.1,
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "pca0.9_svm_rbf": {
+      "file": "model_b3e8440424fd4c227c83058c.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "pca0.9_svm_rbf",
+        "params": {
+          "C": 10,
+          "class_weight": "balanced",
+          "gamma": "scale",
+          "kernel": "rbf"
+        },
+        "pca": 0.9,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "pca0.95_svm_rbf": {
+      "file": "model_e0fc6cb15577acc6ddd81fbc.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "SVM",
+        "name": "pca0.95_svm_rbf",
+        "params": {
+          "C": 10,
+          "class_weight": "balanced",
+          "gamma": "scale",
+          "kernel": "rbf"
+        },
+        "pca": 0.95,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "centroids8_svm_rbf": {
+      "file": "model_d1d3a12b988ee0d013586a11.joblib",
+      "spec": {
+        "centroids": 8,
+        "family": "SVM",
+        "name": "centroids8_svm_rbf",
+        "params": {
+          "C": 10,
+          "class_weight": "balanced",
+          "gamma": "scale",
+          "kernel": "rbf"
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": []
+    },
+    "mlp_32_relu_a0.0001_bFalse": {
+      "file": "model_c5b4322075e729f6bc9eba00.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_32_relu_a0.0001_bFalse",
+        "params": {
+          "activation": "relu",
+          "alpha": 0.0001,
+          "balanced": false,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_32_relu_a0.0001_bTrue": {
+      "file": "model_f993f9ff5070909adbcf7ee6.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_32_relu_a0.0001_bTrue",
+        "params": {
+          "activation": "relu",
+          "alpha": 0.0001,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_32_relu_a0.01_bFalse": {
+      "file": "model_43f5109ae022fb596bd45dd3.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_32_relu_a0.01_bFalse",
+        "params": {
+          "activation": "relu",
+          "alpha": 0.01,
+          "balanced": false,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_32_relu_a0.01_bTrue": {
+      "file": "model_be776a192eeceb2790bfd1d4.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_32_relu_a0.01_bTrue",
+        "params": {
+          "activation": "relu",
+          "alpha": 0.01,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_32_tanh_a0.0001_bFalse": {
+      "file": "model_8efa2618c04cf20b3325518c.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_32_tanh_a0.0001_bFalse",
+        "params": {
+          "activation": "tanh",
+          "alpha": 0.0001,
+          "balanced": false,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_32_tanh_a0.0001_bTrue": {
+      "file": "model_c99e8bfb76b188081de97cde.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_32_tanh_a0.0001_bTrue",
+        "params": {
+          "activation": "tanh",
+          "alpha": 0.0001,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_32_tanh_a0.01_bFalse": {
+      "file": "model_efb8e392949552f2cfe384e6.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_32_tanh_a0.01_bFalse",
+        "params": {
+          "activation": "tanh",
+          "alpha": 0.01,
+          "balanced": false,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_32_tanh_a0.01_bTrue": {
+      "file": "model_ef5d28abe2f28a1b143497b3.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_32_tanh_a0.01_bTrue",
+        "params": {
+          "activation": "tanh",
+          "alpha": 0.01,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_64_32_relu_a0.0001_bFalse": {
+      "file": "model_2134f59fa88ad47e6c73b4eb.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_64_32_relu_a0.0001_bFalse",
+        "params": {
+          "activation": "relu",
+          "alpha": 0.0001,
+          "balanced": false,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_64_32_relu_a0.0001_bTrue": {
+      "file": "model_2e6f90d40d0f927483784d5c.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_64_32_relu_a0.0001_bTrue",
+        "params": {
+          "activation": "relu",
+          "alpha": 0.0001,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_64_32_relu_a0.01_bFalse": {
+      "file": "model_675fbc0ec15c948e036def17.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_64_32_relu_a0.01_bFalse",
+        "params": {
+          "activation": "relu",
+          "alpha": 0.01,
+          "balanced": false,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_64_32_relu_a0.01_bTrue": {
+      "file": "model_aef2ca52da2e11e99bbd0c5b.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_64_32_relu_a0.01_bTrue",
+        "params": {
+          "activation": "relu",
+          "alpha": 0.01,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_64_32_tanh_a0.0001_bFalse": {
+      "file": "model_58018cc801752ec7dd8731c8.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_64_32_tanh_a0.0001_bFalse",
+        "params": {
+          "activation": "tanh",
+          "alpha": 0.0001,
+          "balanced": false,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_64_32_tanh_a0.0001_bTrue": {
+      "file": "model_6ec79ad719c14bdef77bcb71.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_64_32_tanh_a0.0001_bTrue",
+        "params": {
+          "activation": "tanh",
+          "alpha": 0.0001,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_64_32_tanh_a0.01_bFalse": {
+      "file": "model_e928f4ff6adfcd1b693a4a4f.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_64_32_tanh_a0.01_bFalse",
+        "params": {
+          "activation": "tanh",
+          "alpha": 0.01,
+          "balanced": false,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "mlp_64_32_tanh_a0.01_bTrue": {
+      "file": "model_55cb229e970b7c1f7b9a94ce.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "mlp_64_32_tanh_a0.01_bTrue",
+        "params": {
+          "activation": "tanh",
+          "alpha": 0.01,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ]
+        },
+        "pca": null,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "pca0.95_mlp_relu": {
+      "file": "model_35bb88564ff3bccd8aae4703.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "pca0.95_mlp_relu",
+        "params": {
+          "activation": "relu",
+          "alpha": 0.01,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": 0.95,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    },
+    "pca0.95_mlp_tanh": {
+      "file": "model_51685e5de1cb5703a6e34a9a.joblib",
+      "spec": {
+        "centroids": null,
+        "family": "MLP",
+        "name": "pca0.95_mlp_tanh",
+        "params": {
+          "activation": "tanh",
+          "alpha": 0.01,
+          "balanced": true,
+          "hidden_layer_sizes": [
+            32
+          ]
+        },
+        "pca": 0.95,
+        "ratios": true,
+        "stage": 5
+      },
+      "fit_warnings": [
+        "Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet."
+      ]
+    }
+  },
+  "preparation_seconds": 118.93807179999567
+}

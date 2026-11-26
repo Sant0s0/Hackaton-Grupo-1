@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import sys
+from html.parser import HTMLParser
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import nbformat
 import numpy as np
@@ -12,7 +13,8 @@ from src.models import candidates
 
 def main():
     required = ["notebooks/01_eda_y_modelado.ipynb", "app/app.py", "entregas/submission.csv",
-                "README.md", "CONTEXT.md", "AGENTS.md", "docs/EXPLICACION.html", "docs/PITCH.html"]
+                "README.md", "CONTEXT.md", "AGENTS.md", "docs/grupo/EXPLICACION.html", "docs/grupo/GUION_EXPOSICION.html",
+                "presentacion/PRESENTACION_CLASE.html"]
     for name in required:
         path = ROOT / name
         assert path.is_file() and path.stat().st_size > 0, f"Falta {name}"
@@ -45,11 +47,29 @@ def main():
     assert not [out for cell in code for out in cell.outputs if out.output_type == "error"]
     pngs = [out for cell in code for out in cell.outputs if "image/png" in out.get("data", {})]
     assert len(pngs) >= 5, "El notebook debe incluir las gráficas renderizadas, no solo texto Figure(...)"
-    for name in ["docs/EXPLICACION.html", "docs/PITCH.html", "README.md"]:
+    for name in ["docs/grupo/EXPLICACION.html", "docs/grupo/GUION_EXPOSICION.html", "README.md"]:
         text = (ROOT / name).read_text(encoding="utf-8")
         assert all(person in text for person in ["Juan Alejandro Cardona", "Javier Urrego", "Santiago Osorio"])
         assert "Hackaton-Grupo-1" in text
         assert "\ufffd" not in text, f"Carácter de sustitución en {name}"
+    presentation = (ROOT / "presentacion/PRESENTACION_CLASE.html").read_text(encoding="utf-8")
+    class Slides(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.count = 0
+        def handle_starttag(self, tag, attrs):
+            if tag == "section" and "slide" in dict(attrs).get("class", "").split():
+                self.count += 1
+    slides = Slides()
+    slides.feed(presentation)
+    assert slides.count == 8
+    assert "docs/grupo" not in presentation and "GUION_EXPOSICION" not in presentation
+    assert "https://cdn" not in presentation, "Las diapositivas deben funcionar sin internet"
+    manifest = json.loads((ROOT / "outputs/demo_models/manifest.json").read_text())
+    assert manifest["sha256"] == fingerprints()
+    assert set(manifest["models"]) == set(results.name)
+    assert all((ROOT / "outputs/demo_models" / entry["file"]).is_file()
+               for entry in manifest["models"].values())
     print(f"Entrega verificada: {len(required)} archivos principales; {len(results)} candidatos × 5 folds; "
           f"{len(code)} celdas ejecutadas; 1.300 predicciones + cabecera; hashes y orden de id correctos.")
     print("El F1 del test oculto y la evaluación oral quedan a cargo de la profesora.")

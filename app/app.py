@@ -17,8 +17,8 @@ st.markdown("""<style>
  </style>""", unsafe_allow_html=True)
 st.title("VinoLab")
 st.caption("HACKATHON · MÉTODOS Y MODELOS MATEMÁTICOS PARA IA · JAVERIANA CALI")
-STEPS = ["1 · Configuración y roles", "2 · EDA y limpieza", "3 · Baseline por distancias",
-         "4 · Variables nuevas y PCA", "5 · SVM y MLP", "6 · Entrega y pitch"]
+STEPS = ["1 · Resumen del proyecto", "2 · EDA y limpieza", "3 · Baseline por distancias",
+         "4 · Variables nuevas y PCA", "5 · SVM y MLP", "6 · Resultados y predicciones"]
 METHODS = ["Seguir el paso seleccionado", "k-NN", "k-means", "PCA", "SVM lineal", "SVM polinomial", "SVM RBF", "MLP"]
 
 
@@ -38,10 +38,10 @@ def route_method():
 
 with st.sidebar:
     st.subheader("Explora el trabajo")
-    st.radio("Paso de la guía", STEPS, key="step", on_change=reset_method)
+    st.radio("Módulo", STEPS, key="step", on_change=reset_method)
     st.divider()
     method = st.selectbox("¿Qué método quieres usar?", METHODS, key="method", on_change=route_method)
-    st.caption("Orden oficial de la guía. Cada módulo permite comparar y probar sus métodos.")
+    st.caption("Explora los datos, compara métodos y predice la calidad de una muestra.")
     st.caption("Clasificación binaria · semilla 42 · F1 macro")
 try:
     train, test = load_data()

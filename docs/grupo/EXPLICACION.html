@@ -14,9 +14,10 @@ footer{margin-top:50px;border-top:1px solid var(--line);padding-top:22px;color:#
 @media(max-width:700px){main{margin:0;padding:30px 20px;border-radius:0}body{font-size:16px}h1{font-size:2.1rem}table{font-size:.8rem}td,th{padding:8px 6px}}
 @media print{@page{size:A4;margin:18mm}body{background:white;font-size:10pt;line-height:1.5}main{padding:0;margin:0;border:0;max-width:none}h1{font-size:29pt}h2{font-size:17pt;margin-top:25pt;break-after:avoid}h3{break-after:avoid}table{font-size:8.5pt}figure,.note,.result,.formula{break-inside:avoid}nav,.print{display:none}a{color:inherit}pre{background:#eef2f6;color:#21364a}footer{font-size:8.5pt}}
 </style></head><body><main>
-<div class="eyebrow">GRUPO 1 · DOCUMENTO DE EXPLICACIÓN Y DEFENSA</div>
+<div class="eyebrow">GRUPO 1 · MATERIAL INTERNO DE ESTUDIO</div>
 <h1>De las mediciones del vino<br>a una decisión de calidad</h1>
 <p class="lead">Qué se hizo en cada punto de la guía, por qué se hizo así y cómo se conecta con las clases del semestre.</p>
+<div class="note">Este documento es para preparar al equipo. Las diapositivas para la clase están en <a href="../../presentacion/PRESENTACION_CLASE.html">PRESENTACION_CLASE.html</a> y la aplicación se abre por separado. El <a href="GUION_EXPOSICION.html">guion de exposición</a> también es material del grupo.</div>
 <p>Juan Alejandro Cardona · Javier Urrego · Santiago Osorio</p><p><a href="https://github.com/Sant0s0/Hackaton-Grupo-1">Repositorio de Grupo 1</a></p>
 <p class="print"><button onclick="window.print()">Imprimir o guardar como PDF</button></p>
 <div class="result"><strong>Resultado medido:</strong> el mejor candidato de los 79 evaluados fue k-NN con 11 vecinos, disimilitud coseno, votación ponderada por distancia y tres cocientes. F1 macro por CV: <strong>0.8510 ± 0.0175</strong>. El puntaje del test oculto todavía no se conoce.</div>
@@ -217,10 +218,11 @@ footer{margin-top:50px;border-top:1px solid var(--line);padding-top:22px;color:#
 <h2 id="entregables">4. Entregables obligatorios y ubicación</h2>
 <table><tr><th>Guía, sección 4</th><th>Archivo</th><th>Cómo se comprueba</th></tr>
 <tr><td>Notebook limpio, comentado y ejecutado</td><td>notebooks/01_eda_y_modelado.ipynb</td><td>EDA, baseline reejecutado, PCA, resultados completos y controles SVM/MLP; celdas con salidas reales</td></tr>
-<tr><td>Streamlit funcional</td><td>app/app.py y app/modules/</td><td>Seis pasos, al menos dos figuras EDA/PCA, tabla de modelos y predicción interactiva</td></tr>
+<tr><td>Streamlit funcional</td><td>app/app.py y app/modules/</td><td>Seis módulos, figuras EDA/PCA, tabla de modelos y predicción interactiva; sin guion ni documentos internos</td></tr>
 <tr><td>Predicciones</td><td>entregas/submission.csv</td><td>Exactamente id,prediction; 1.300 registros más cabecera, sin nulos y con orden conservado</td></tr>
 <tr><td>Resumen y tabla de CV</td><td>README.md</td><td>Instalación, enfoque matemático, resultados medidos y límites</td></tr>
-<tr><td>Explicación solicitada por el equipo</td><td>docs/EXPLICACION.html y docs/PITCH.html</td><td>Lectura sin internet; botón de impresión a PDF; defensa de cinco minutos</td></tr>
+<tr><td>Presentación para clase</td><td>presentacion/PRESENTACION_CLASE.html</td><td>Ocho diapositivas independientes, navegación con flechas, pantalla completa e impresión a PDF</td></tr>
+<tr><td>Preparación interna del equipo</td><td>docs/grupo/EXPLICACION.html y docs/grupo/GUION_EXPOSICION.html</td><td>Justificaciones, preguntas de defensa y guion; no se muestran dentro de la app</td></tr>
 <tr><td>Continuidad para asistentes IA</td><td>CONTEXT.md y AGENTS.md</td><td>Fuentes, reglas, arquitectura y comandos para continuar sin perder contexto</td></tr></table>
 <p>El repositorio de destino es <a href="https://github.com/Sant0s0/Hackaton-Grupo-1">Hackaton-Grupo-1</a>. El historial debe registrar las contribuciones reales. Los roles y commits de los demás integrantes no se simulan. El archivo CSV se valida automáticamente antes de exportarse.</p>
 
@@ -230,10 +232,14 @@ footer{margin-top:50px;border-top:1px solid var(--line);padding-top:22px;color:#
 <tr><td>Progresión de modelos</td><td>25%</td><td>Baselines, ablation ratios/PCA, SVM y MLP; F1 y tiempos con folds comunes</td></tr>
 <tr><td>Desempeño oculto</td><td>25%</td><td>submission válido; puntaje y ranking dependen de la evaluación docente</td></tr>
 <tr><td>App y orden en GitHub</td><td>15%</td><td>Módulos y estructura solicitada; colaboración real debe constar en GitHub</td></tr>
-<tr><td>Pitch y defensa</td><td>15%</td><td>Guion en docs/PITCH.html; la exposición y preguntas corresponden al equipo</td></tr></table>
+<tr><td>Pitch y defensa</td><td>15%</td><td>Guion en docs/grupo/GUION_EXPOSICION.html; la exposición y preguntas corresponden al equipo</td></tr></table>
 
 <h2 id="uso">Cómo usar la aplicación, sin leer el código</h2>
-<ol><li>Abre <code>iniciar_app.bat</code> en Windows o ejecuta el comando Streamlit del README.</li><li>Recorre «Paso de la guía» de 1 a 6 para seguir la explicación oficial.</li><li>Para ir directo a un algoritmo, usa «¿Qué método quieres usar?»; se abrirá su paso correspondiente.</li><li>Escoge una configuración ya evaluada. F1 macro y su desviación corresponden a sus cinco folds.</li><li>Si quieres experimentar, activa «Ajustar parámetros del método». Puedes evaluar esa configuración por separado; esto no sustituye el ganador guardado.</li><li>Introduce las once mediciones y pulsa «Predecir calidad». La MLP produce una estimación no calibrada; k-NN muestra votos, k-means proporción del clúster y SVM un puntaje de decisión.</li><li>En el paso 6 descarga el CSV de la entrega o el documento explicativo. El CSV corresponde al ganador reproducible, no a una prueba manual aislada.</li></ol>
+<ol><li>Abre <code>iniciar_app.bat</code> en Windows o ejecuta el comando Streamlit del README.</li><li>Recorre «Módulo» de 1 a 6 para explorar los datos y resultados.</li><li>Para ir directo a un algoritmo, usa «¿Qué método quieres usar?».</li><li>Escoge una configuración ya evaluada. F1 macro y su desviación corresponden a sus cinco folds.</li><li>Si quieres experimentar, activa «Ajustar parámetros del método». Evaluar cinco folds vuelve a entrenar y puede tardar; no es necesario para mostrar predicciones.</li><li>Introduce las once mediciones y pulsa «Predecir calidad». La MLP produce una estimación no calibrada; k-NN muestra votos, k-means proporción del clúster y SVM un puntaje de decisión.</li><li>En el módulo 6 descarga el CSV de la entrega. El CSV corresponde al ganador reproducible, no a una prueba manual aislada.</li></ol>
+<h3>¿Cómo evitamos entrenar durante la exposición?</h3>
+<p>Los archivos <code>.joblib</code> guardan el pipeline completo: ratios, imputación, escalado, PCA o centroides cuando corresponden y el clasificador aprendido. <code>scripts/preparar_demo.py</code> prepara las 79 configuraciones evaluadas una vez. La aplicación las carga de disco y las conserva además en memoria con caché.</p>
+<p>Cerrar y volver a abrir la app no obliga a entrenarlas de nuevo. Si se cambian parámetros a una configuración inédita, el primer ajuste puede tardar; después también queda guardado. Cambiar los datos o la versión de scikit-learn invalida esos archivos y requiere prepararlos de nuevo. Para presentar, conviene elegir configuraciones evaluadas y evitar el botón de evaluación de cinco folds.</p>
+<div class="note">La comparación futura entre tres proyectos todavía no se ha realizado. La carpeta <code>Hackathon_MMMIA_Grupo1 (1)</code> se conserva sin analizar ni integrar; los resultados de este documento pertenecen únicamente al proyecto actual.</div>
 
 <h2 id="fuentes">Conexión con las clases del semestre</h2>
 <p>Se revisaron los 13 materiales de clase y guía proporcionados. Los PDF de SVM y geometría neuronal, así como las páginas gráficas de Deep Learning, se revisaron visualmente. No se abrieron los enlaces externos de Colab/Drive: estas referencias se limitan a los archivos locales.</p>

@@ -24,7 +24,7 @@ los modelos permitidos y los CSV entregados. Las salidas se calculan ejecutando
 código; los resultados de la búsqueda completa se recuperan de archivos auditables.
 
 La métrica oficial es **F1 macro**. No conocemos las etiquetas del test oculto.
-El documento `docs/EXPLICACION.html` desarrolla las decisiones en lenguaje sencillo.
+El documento `docs/grupo/EXPLICACION.html` desarrolla las decisiones en lenguaje sencillo.
 """)
     md("""## 1. Configuración y roles (0–10 min)
 Responsabilidades propuestas: datos y fundamentos; modelos y validación; aplicación
@@ -221,8 +221,8 @@ La aplicación tiene los seis pasos, selector de todos los métodos permitidos,
 visualizaciones EDA/PCA, tabla comparativa y simuladores. Las configuraciones
 personalizadas se mantienen separadas de la entrega oficial guardada.
 
-Documentos: `README.md` (ejecución y resultados), `docs/EXPLICACION.html` (cada punto
-y su justificación), `docs/PITCH.html` (guion de 5 min), `CONTEXT.md` y `AGENTS.md`
+Documentos: `README.md` (ejecución y resultados), `docs/grupo/EXPLICACION.html` (cada punto
+y su justificación), `docs/grupo/GUION_EXPOSICION.html` (guion de 5 min), `CONTEXT.md` y `AGENTS.md`
 (continuidad para IA). Las fuentes del curso y páginas se indican en el documento.
 
 La publicación en GitHub y el historial colaborativo deben reflejar el trabajo real

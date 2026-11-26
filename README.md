@@ -17,11 +17,16 @@ El control agrupando perfiles idénticos dio **0.8041**. El **F1 del test oculto
 
 ## Empezar aquí
 
-- [Documento explicado paso a paso](docs/EXPLICACION.html): qué se hizo, por qué,
+- **Para mostrar en clase:** [presentación de ocho diapositivas](presentacion/PRESENTACION_CLASE.html)
+  y aplicación VinoLab. Abre `abrir_presentacion.bat` para las diapositivas e
+  `iniciar_app.bat` para la app; son independientes.
+- **Para preparar al grupo:** carpeta `docs/grupo/`. Abre `abrir_material_grupo.bat`
+  para estudiar la explicación. El guion y las respuestas de defensa quedan fuera de la app.
+- [Documento explicado paso a paso](docs/grupo/EXPLICACION.html): qué se hizo, por qué,
   resultados, rúbrica y conexión con todas las clases. Abrir en navegador; funciona
   sin internet y tiene botón para imprimir o guardar como PDF.
 - [Notebook ejecutado](notebooks/01_eda_y_modelado.ipynb): código, gráficas y salidas reales.
-- [Guion de pitch de 5 minutos](docs/PITCH.html).
+- [Guion interno de exposición de 5 minutos](docs/grupo/GUION_EXPOSICION.html).
 - [Contexto para otras IA](CONTEXT.md) y [reglas del repositorio](AGENTS.md).
 - [CSV de entrega](entregas/submission.csv).
 
@@ -50,14 +55,19 @@ la aplicación no necesita enviar los CSV a un servicio externo.
 
 ### Navegación y métodos
 
-La barra lateral contiene «Paso de la guía» y «¿Qué método quieres usar?». Los pasos son:
+La barra lateral contiene «Módulo» y «¿Qué método quieres usar?». Mantiene el orden
+de la guía para los contenidos técnicos, con estos módulos:
 
-1. **Configuración y roles**: problema, datos y distribución sugerida de responsabilidades.
+1. **Resumen del proyecto**: problema, datos y métodos disponibles.
 2. **EDA y limpieza**: desbalance, correlaciones, distribuciones y extremos IQR.
 3. **Baseline por distancias**: k-NN y k-means; configuraciones, métricas y simulador.
 4. **Variables nuevas y PCA**: tres ratios, comparación controlada y proyecciones.
 5. **SVM y MLP**: SVM lineal/polinomial/RBF y redes, con parámetros ajustables.
-6. **Entrega y pitch**: tabla completa, diagnóstico agrupado, CSV y simulador ganador.
+6. **Resultados y predicciones**: tabla completa, diagnóstico agrupado, CSV y simulador ganador.
+
+La app no contiene guiones, reparto de roles ni descargas del material interno.
+Las diapositivas tienen flechas, pantalla completa (F o F11) y un botón para imprimir
+o guardar como PDF. Funcionan sin internet y no requieren ejecutar Streamlit.
 
 Puedes escoger cualquier método directamente. k-NN permite Euclidiana, Manhattan,
 Minkowski y coseno. En cada panel se puede elegir una configuración evaluada o activar
@@ -67,6 +77,29 @@ resultados completos ni cambia `entregas/submission.csv`.
 El simulador recibe **once mediciones**, no id ni target. SVM muestra su función de
 decisión con umbral 0; k-NN muestra votos ponderados; k-means proporción en el clúster;
 MLP una estimación de salida. Ninguna se presenta como probabilidad calibrada.
+
+### Modelos guardados y rapidez durante la presentación
+
+Sí: los modelos pueden guardarse. Inicialmente se guardaron seis representantes en
+`outputs/model_*.joblib`. Además, se prepararon las **79 configuraciones evaluadas**
+en `outputs/demo_models/`, con índice en `manifest.json`. Cada archivo contiene el
+pipeline completo y se comprueban sus parámetros, el hash de entrenamiento y la
+versión de scikit-learn antes de reutilizarlo.
+
+La app carga estos archivos y usa caché de memoria: **seleccionar una configuración
+evaluada y predecir no vuelve a entrenar**. Los ajustes personalizados nuevos sí
+necesitan una primera preparación, que después se guarda. El botón «Evaluar esta
+configuración con 5 folds» vuelve a entrenar y conviene usarlo antes de exponer.
+
+Para preparar la demo en otro equipo o tras cambiar datos/versiones:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/preparar_demo.py
+```
+
+Esto no repite la búsqueda cruzada, no cambia las métricas y no sustituye el CSV final.
+Cerrar la app no borra los archivos de modelos. Mantén `src/`, los datos y las
+versiones compatibles junto con esos archivos al trasladar el proyecto.
 
 ## Datos y comprobaciones
 
@@ -159,6 +192,8 @@ resultado; no atribuimos la mejora total solo a esas variables.
 ```powershell
 .\.venv\Scripts\python.exe scripts/entrenar.py --profile complete
 .\.venv\Scripts\python.exe scripts/crear_documentacion.py
+.\.venv\Scripts\python.exe scripts/crear_presentacion.py
+.\.venv\Scripts\python.exe scripts/preparar_demo.py
 .\.venv\Scripts\python.exe scripts/crear_notebook.py --execute
 .\.venv\Scripts\python.exe -m pytest tests -q
 .\.venv\Scripts\python.exe scripts/verificar_entrega.py
@@ -195,13 +230,15 @@ app/app.py                      Entrada Streamlit
 app/common.py                   Selección, parámetros, métricas y simulador
 app/modules/                    Un módulo por paso de la guía
 data/                           CSV originales copiados
-docs/EXPLICACION.html            Documento autónomo y trazabilidad con clases
-docs/PITCH.html                  Guion y preguntas de defensa
+presentacion/PRESENTACION_CLASE.html Diapositivas para mostrar a la clase
+docs/grupo/EXPLICACION.html            Documento autónomo y trazabilidad con clases
+docs/grupo/GUION_EXPOSICION.html  Guion y preguntas para uso del equipo
 entregas/submission.csv          Predicciones listas para evaluación docente
 notebooks/01_eda_y_modelado.ipynb Notebook ejecutado
 src/                            Datos, features, modelos, evaluación y gráficas
 scripts/                        Entrenamiento, generación y verificación
 outputs/                        Métricas, auditoría, figuras y modelos finales
+outputs/demo_models/            79 pipelines preparados para la demo
 tests/                          Fuga de datos, contratos y pruebas Streamlit
 CONTEXT.md                      Contexto para otras IA
 AGENTS.md                       Reglas de mantenimiento
@@ -219,6 +256,10 @@ Forest, boosting y AutoML por la guía. Regresión, CNN y Jaccard/Hamming se exp
 como contexto del semestre, pero quedan fuera de la lista de herramientas de este reto.
 
 ## Entrega en GitHub y responsabilidades
+
+La carpeta añadida `Hackathon_MMMIA_Grupo1 (1)` no se modifica, analiza ni integra.
+La comparación entre tres proyectos y la selección de sus mejores modelos quedan
+para una etapa posterior. Los resultados actuales son solo de este proyecto.
 
 Destino: [Hackaton-Grupo-1](https://github.com/Sant0s0/Hackaton-Grupo-1), rama `main`. Deben estar los cuatro archivos
 obligatorios en sus rutas exactas. Los materiales de la profesora no se redistribuyen

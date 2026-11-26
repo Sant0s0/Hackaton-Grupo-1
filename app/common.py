@@ -1,7 +1,5 @@
 from dataclasses import replace
 import json
-import warnings
-import joblib
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
@@ -9,7 +7,8 @@ from sklearn.model_selection import StratifiedKFold
 from threadpoolctl import threadpool_limits
 from src.data import FEATURES, LABELS, ROOT, SEED, fingerprints
 from src.evaluation import evaluate_candidate
-from src.models import Candidate, build_pipeline
+from src.models import Candidate
+from src.persistence import prepare_model
 
 
 def show_figure(fig):
@@ -45,21 +44,14 @@ def metrics_table(results):
 @st.cache_resource(show_spinner="Preparando el método elegido…")
 def fitted_model(spec_json, train_hash, experiment_stamp):
     spec = Candidate(**json.loads(spec_json))
-    # Los únicos binarios que cargamos son los generados por este proyecto.
     meta_path = ROOT / "outputs/experiment.json"
-    if meta_path.exists():
-        meta = json.loads(meta_path.read_text(encoding="utf-8"))
-        filename = meta.get("artifacts", {}).get(spec.name)
-        if filename:
-            artifact = joblib.load(ROOT / "outputs" / filename)
-            if artifact["spec"] == json.loads(spec_json) and artifact["sha256"]["train_public.csv"] == train_hash:
-                return artifact["pipeline"], artifact.get("fit_warnings", [])
+    meta = json.loads(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else {}
     train = pd.read_csv(ROOT / "data/train_public.csv")
-    pipeline = build_pipeline(spec)
-    with warnings.catch_warnings(record=True) as caught, threadpool_limits(limits=1):
-        warnings.simplefilter("always")
-        pipeline.fit(train[FEATURES], train.target)
-    return pipeline, sorted({str(w.message) for w in caught})
+    hashes = fingerprints()
+    if hashes["train_public.csv"] != train_hash:
+        raise ValueError("Los datos cambiaron durante la preparación del modelo.")
+    artifact = prepare_model(spec, train, hashes, meta)
+    return artifact["pipeline"], artifact.get("fit_warnings", [])
 
 
 def get_fitted(spec, meta):
@@ -159,6 +151,7 @@ def model_panel(options, results, train, meta, key):
         spec = replace(spec, name=f"personalizado_{key}", params=params, ratios=ratios,
                        pca=None if pca_choice == "Sin PCA" else pca_choice)
         st.caption("Una configuración personalizada no cambia la comparación oficial ni la entrega guardada.")
+        st.caption("La primera predicción con parámetros nuevos puede tardar mientras se prepara el modelo; después queda guardado. Evaluar cinco folds vuelve a entrenar y puede demorar.")
         if st.button("Evaluar esta configuración con 5 folds", key=f"evaluate_{key}"):
             with st.spinner("Evaluando únicamente sobre train_public…"):
                 splits = list(StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED).split(train[FEATURES], train.target))
