@@ -1,7 +1,9 @@
 # Grupo 1 · Hackathon de Métodos y Modelos Matemáticos para IA
 
-**Juan Alejandro Cardona · Javier Urrego · Santiago Osorio**  
-Profesora: Tatiana Solano · Pontificia Universidad Javeriana Cali  
+**Juan Alejandro Cardona · Javier Urrego · Santiago Osorio**
+
+Profesora: Tatiana Solano · Pontificia Universidad Javeriana Cali
+
 Repositorio: [https://github.com/Sant0s0/Hackaton-Grupo-1](https://github.com/Sant0s0/Hackaton-Grupo-1)
 
 Clasificamos vinos de **calidad estándar (0)** o **superior (1)** con once mediciones

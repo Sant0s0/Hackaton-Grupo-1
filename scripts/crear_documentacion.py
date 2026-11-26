@@ -236,8 +236,10 @@ def main():
         table_md += f"| `{row['name']}` | {row.f1_macro_mean:.4f} | {row.f1_macro_std:.4f} | {row.f1_1_mean:.4f} | {row.fit_seconds_mean:.4f} | {row.prediction_seconds_mean:.4f} |\n"
     readme = f"""# Grupo 1 · Hackathon de Métodos y Modelos Matemáticos para IA
 
-**Juan Alejandro Cardona · Javier Urrego · Santiago Osorio**  
-Profesora: Tatiana Solano · Pontificia Universidad Javeriana Cali  
+**Juan Alejandro Cardona · Javier Urrego · Santiago Osorio**
+
+Profesora: Tatiana Solano · Pontificia Universidad Javeriana Cali
+
 Repositorio: [{REPO}]({REPO})
 
 Clasificamos vinos de **calidad estándar (0)** o **superior (1)** con once mediciones
