@@ -13,7 +13,7 @@ from src.models import candidates
 
 def main():
     required = ["notebooks/01_eda_y_modelado.ipynb", "app/app.py", "entregas/submission.csv",
-                "README.md", "CONTEXT.md", "AGENTS.md", "docs/grupo/EXPLICACION.html", "docs/grupo/GUION_EXPOSICION.html",
+                "README.md", "outputs/consolidated.json", "outputs/project_comparison.csv",
                 "presentacion/PRESENTACION_CLASE.html"]
     for name in required:
         path = ROOT / name
@@ -47,10 +47,9 @@ def main():
     assert not [out for cell in code for out in cell.outputs if out.output_type == "error"]
     pngs = [out for cell in code for out in cell.outputs if "image/png" in out.get("data", {})]
     assert len(pngs) >= 5, "El notebook debe incluir las gráficas renderizadas, no solo texto Figure(...)"
-    for name in ["docs/grupo/EXPLICACION.html", "docs/grupo/GUION_EXPOSICION.html", "README.md"]:
+    for name in ["README.md"]:
         text = (ROOT / name).read_text(encoding="utf-8")
         assert all(person in text for person in ["Juan Alejandro Cardona", "Javier Urrego", "Santiago Osorio"])
-        assert "Hackaton-Grupo-1" in text
         assert "\ufffd" not in text, f"Carácter de sustitución en {name}"
     presentation = (ROOT / "presentacion/PRESENTACION_CLASE.html").read_text(encoding="utf-8")
     class Slides(HTMLParser):
@@ -70,8 +69,18 @@ def main():
     assert set(manifest["models"]) == set(results.name)
     assert all((ROOT / "outputs/demo_models" / entry["file"]).is_file()
                for entry in manifest["models"].values())
+    final = json.loads((ROOT / "outputs/consolidated.json").read_text(encoding="utf-8"), parse_constant=reject_constant)
+    comparison = pd.read_csv(ROOT / "outputs/project_comparison.csv")
+    assert final['sha256'] == fingerprints()
+    assert len(comparison) == final['total_configurations'] == 116
+    winner = next(m for m in final['models'] if m['id'] == final['winner_id'])
+    assert np.isclose(winner['f1_macro'], comparison.f1_macro.max())
+    import joblib
+    pipeline = joblib.load(ROOT / "outputs" / winner['artifact'])['pipeline']
+    np.testing.assert_array_equal(pipeline.predict(test[FEATURES]), submission.prediction)
     print(f"Entrega verificada: {len(required)} archivos principales; {len(results)} candidatos × 5 folds; "
-          f"{len(code)} celdas ejecutadas; 1.300 predicciones + cabecera; hashes y orden de id correctos.")
+          f"{len(comparison)} configuraciones comparadas; {len(code)} celdas ejecutadas; "
+          f"1.300 predicciones + cabecera; hashes y orden de id correctos.")
     print("El F1 del test oculto y la evaluación oral quedan a cargo de la profesora.")
 
 

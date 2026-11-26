@@ -36,11 +36,11 @@ def test_custom_model_survives_a_fresh_load(tmp_path, monkeypatch):
     assert load_saved(spec, {"train_public.csv": "other_data"}, directory=tmp_path) is None
 
 
-def test_saved_winner_matches_official_submission():
+def test_saved_base_winner_matches_archived_submission():
     import pandas as pd
     _, test = load_data()
     meta = json.loads((ROOT / "outputs/experiment.json").read_text(encoding="utf-8"))
     artifact = load_saved(Candidate(**meta["best"]), fingerprints())
     actual = artifact["pipeline"].predict(test[FEATURES])
-    expected = pd.read_csv(ROOT / "entregas/submission.csv").prediction
+    expected = pd.read_csv(ROOT / "outputs/submission_base.csv").prediction
     np.testing.assert_array_equal(actual, expected)

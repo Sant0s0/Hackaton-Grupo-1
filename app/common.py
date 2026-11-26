@@ -10,8 +10,32 @@ from src.evaluation import evaluate_candidate
 from src.models import Candidate
 from src.persistence import prepare_model
 
+FIELD_LABELS = {
+    "fixed_acidity": "Acidez fija (g/dm³)", "volatile_acidity": "Acidez volátil (g/dm³)",
+    "citric_acid": "Ácido cítrico (g/dm³)", "residual_sugar": "Azúcar residual (g/dm³)",
+    "chlorides": "Cloruros (g/dm³)", "free_sulfur_dioxide": "SO₂ libre (mg/dm³)",
+    "total_sulfur_dioxide": "SO₂ total (mg/dm³)", "density": "Densidad (g/cm³)",
+    "pH": "pH", "sulphates": "Sulfatos (g/dm³)", "alcohol": "Alcohol (% vol.)",
+}
+
 
 def show_figure(fig):
+    if st.session_state.get("dark_visuals", False):
+        fig.set_facecolor("#11182a")
+        for ax in fig.axes:
+            ax.set_facecolor("#11182a")
+            ax.tick_params(colors="#cbd5e1")
+            for label in [ax.title, ax.xaxis.label, ax.yaxis.label]:
+                label.set_color("#e2e8f0")
+            for spine in ax.spines.values():
+                spine.set_color("#45536b")
+            if not ax.images:
+                for text in ax.texts:
+                    text.set_color("#f1f5f9")
+            if ax.get_legend():
+                ax.get_legend().get_frame().set_facecolor("#11182a")
+                for text in ax.get_legend().get_texts():
+                    text.set_color("#e2e8f0")
     st.pyplot(fig)
     plt.close(fig)
 
@@ -59,7 +83,7 @@ def get_fitted(spec, meta):
                         meta.get("created_utc", "sin_experimento"))
 
 
-def simulator(spec, train, meta, key):
+def simulator(spec, train, meta, key, pipeline_loader=None):
     st.subheader("Prueba una muestra")
     st.caption("Introduce las once mediciones de laboratorio. 0 = estándar; 1 = superior.")
     with st.form(f"simulator_{key}"):
@@ -68,7 +92,7 @@ def simulator(spec, train, meta, key):
         for index, feature in enumerate(FEATURES):
             with columns[index % 3]:
                 values[feature] = st.number_input(
-                    feature, min_value=0.0, value=float(train[feature].median()),
+                    FIELD_LABELS[feature], min_value=0.0, value=float(train[feature].median()),
                     format="%.5f" if feature == "density" else "%.4f", key=f"{key}_{feature}")
         submitted = st.form_submit_button("Predecir calidad", type="primary")
     if submitted:
@@ -80,9 +104,12 @@ def simulator(spec, train, meta, key):
             st.error("Revisa el pH: el simulador admite valores entre 0 y 14.")
             return
         outside = [f for f in FEATURES if not train[f].min() <= values[f] <= train[f].max()]
+        if values["free_sulfur_dioxide"] > values["total_sulfur_dioxide"]:
+            st.error("El SO₂ libre no puede superar al SO₂ total. Revisa esas mediciones.")
+            return
         if outside:
             st.warning("Fuera del rango observado en entrenamiento: " + ", ".join(outside))
-        model, messages = get_fitted(spec, meta)
+        model, messages = pipeline_loader() if pipeline_loader else get_fitted(spec, meta)
         with threadpool_limits(limits=1):
             pred = int(model.predict(sample)[0])
             if spec.family == "SVM":

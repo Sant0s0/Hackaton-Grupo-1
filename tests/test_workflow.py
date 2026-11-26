@@ -84,7 +84,7 @@ def test_saved_artifacts_reproduce_the_submission():
     assert meta["sha256"] == fingerprints()
     artifact = joblib.load(ROOT / "outputs" / meta["artifacts"][meta["best"]["name"]])
     predictions = artifact["pipeline"].predict(test[FEATURES])
-    actual = pd.read_csv(ROOT / "entregas/submission.csv")
+    actual = pd.read_csv(ROOT / "outputs/submission_base.csv")
     assert validate_submission(actual, test)
     np.testing.assert_array_equal(predictions, actual.prediction)
     folds = pd.read_csv(ROOT / "outputs/cv_folds.csv")

@@ -9,6 +9,10 @@ pytestmark = pytest.mark.skipif(not (ROOT / "outputs/experiment.json").exists(),
 def test_all_six_modules_open():
     at = AppTest.from_file(str(ROOT / "app/app.py"), default_timeout=30).run()
     assert not at.exception
+    for section in at.radio(key="section").options:
+        at.radio(key="section").set_value(section).run()
+        assert not at.exception
+    at.radio(key="section").set_value("Recorrido técnico").run()
     options = list(at.radio(key="step").options)
     for option in options:
         at.radio(key="step").set_value(option).run()
@@ -35,15 +39,15 @@ def test_custom_parameters_and_navigation_reset():
     metric.set_value("minkowski").run()
     assert not at.exception
     assert any(slider.label == "Orden p de Minkowski" for slider in at.slider)
-    at.radio(key="step").set_value(at.radio(key="step").options[1]).run()
+    at.radio(key="section").set_value("EDA y PCA").run()
     assert not at.exception
-    assert at.selectbox(key="method").value == "Seguir el paso seleccionado"
+    assert at.radio(key="section").value == "EDA y PCA"
 
 
 def test_app_keeps_group_material_out_of_the_demonstration():
     at = AppTest.from_file(str(ROOT / "app/app.py"), default_timeout=30).run()
-    for index in (0, 5):
-        at.radio(key="step").set_value(at.radio(key="step").options[index]).run()
+    for section in ("Mejor modelo", "Descargar predicciones"):
+        at.radio(key="section").set_value(section).run()
         assert not at.exception
         visible = " ".join(item.value for collection in [at.markdown, at.header, at.subheader, at.caption]
                            for item in collection)

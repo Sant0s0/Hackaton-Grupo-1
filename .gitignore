@@ -8,3 +8,16 @@ docs/fuentes_texto/
 docs/revision_visual/
 outputs/app_*.joblib
 outputs/.jupyter/
+
+# Material de preparación del equipo: conservar en disco, excluir de la entrega.
+/docs/grupo/
+/CONTEXT.md
+/AGENTS.md
+/abrir_material_grupo.bat
+/scripts/crear_documentacion.py
+/scripts/crear_notebook.py
+/scripts/revisar_fuentes.py
+/scripts/revisar_diapos.py
+/outputs/app_entry_backup.txt
+/Hackathon_MMMIA_Grupo1 (1)/
+/hackaton_alejoversion/

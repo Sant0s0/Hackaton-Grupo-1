@@ -1,0 +1,179 @@
+{
+  "sha256": {
+    "train_public.csv": "73a774f51fc708e0f07a1595fe92bea93957f5ea83cf2f56efc6ea1c9e9f508d",
+    "test_public_features.csv": "cd2d9cd2052f93452f055deb478a3bb8ce067e33d652dada5b6b735126a27d49"
+  },
+  "winner_id": "selected_knn",
+  "models": [
+    {
+      "id": "selected_knn",
+      "name": "k-NN · coseno + centroides",
+      "family": "k-NN",
+      "source": "Versión Alejo",
+      "artifact": "selected_models/selected_knn.joblib",
+      "f1_macro": 0.8623720330701075,
+      "std": 0.01830839667465922,
+      "params": {
+        "n_neighbors": 23,
+        "metric": "cosine",
+        "weights": "distance",
+        "centroid_groups": [
+          2,
+          6
+        ],
+        "use_log": true,
+        "PCA": false
+      },
+      "preprocessing": "11 mediciones → 22 variables (6 derivadas y 5 logaritmos) → z-score → distancias a centroides 2/6 y nuevo z-score → k-NN"
+    },
+    {
+      "id": "selected_svm_rbf",
+      "name": "SVM · RBF",
+      "family": "SVM",
+      "source": "Versión Alejo",
+      "artifact": "selected_models/selected_svm_rbf.joblib",
+      "f1_macro": 0.8279472959934371,
+      "std": null,
+      "params": {
+        "C": 20.0,
+        "class_weight": null,
+        "coef0": 0.0,
+        "degree": 3,
+        "gamma": 8.0,
+        "kernel": "rbf",
+        "threshold": 0.0
+      },
+      "preprocessing": "22 variables químicas/logarítmicas → z-score → normalización L2 → SVM; umbral estándar"
+    },
+    {
+      "id": "selected_mlp",
+      "name": "MLP · ReLU (64, 32)",
+      "family": "MLP",
+      "source": "Proyecto base",
+      "artifact": "selected_models/selected_mlp.joblib",
+      "f1_macro": 0.8235231608465738,
+      "std": 0.02635530663930141,
+      "params": {
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "activation": "relu",
+        "alpha": 0.01,
+        "balanced": true
+      },
+      "preprocessing": "11 mediciones + 3 cocientes → imputación → z-score → MLP"
+    },
+    {
+      "id": "selected_svm_poly",
+      "name": "SVM · POLY",
+      "family": "SVM",
+      "source": "Versión Alejo",
+      "artifact": "selected_models/selected_svm_poly.joblib",
+      "f1_macro": 0.8131232719202824,
+      "std": null,
+      "params": {
+        "C": 2.0,
+        "class_weight": null,
+        "coef0": 1.0,
+        "degree": 2,
+        "gamma": "scale",
+        "kernel": "poly",
+        "threshold": 0.0
+      },
+      "preprocessing": "22 variables químicas/logarítmicas → z-score → SVM; umbral estándar"
+    },
+    {
+      "id": "selected_svm_linear",
+      "name": "SVM · lineal",
+      "family": "SVM",
+      "source": "Proyecto base",
+      "artifact": "selected_models/selected_svm_linear.joblib",
+      "f1_macro": 0.8089085131106264,
+      "std": 0.015905975112640938,
+      "params": {
+        "kernel": "linear",
+        "C": 0.1,
+        "gamma": "scale",
+        "class_weight": null
+      },
+      "preprocessing": "11 mediciones + 3 cocientes → imputación → z-score → SVM lineal"
+    },
+    {
+      "id": "selected_kmeans",
+      "name": "k-means · mayoría",
+      "family": "k-means",
+      "source": "Proyecto base",
+      "artifact": "selected_models/selected_kmeans.joblib",
+      "f1_macro": 0.7665211211784922,
+      "std": 0.01464893004407441,
+      "params": {
+        "n_clusters": 2
+      },
+      "preprocessing": "11 mediciones → imputación → z-score → k-means"
+    }
+  ],
+  "source_winners": [
+    {
+      "source": "Proyecto base",
+      "id": "fe_knn_k11_cosine_distance",
+      "name": "fe_knn_k11_cosine_distance",
+      "family": "k-NN",
+      "f1_macro": 0.8509755737636672,
+      "std": 0.017458790795525106,
+      "reported_f1": 0.8509755737636672,
+      "adjusted_threshold": false,
+      "fit_seconds": 0.006790519999049139
+    },
+    {
+      "source": "Versión alternativa",
+      "id": "k-NN L1 k=31 ponderado + ratios",
+      "name": "k-NN L1 k=31 ponderado + ratios",
+      "family": "k-NN",
+      "f1_macro": 0.8490367036706259,
+      "std": 0.012444256531580709,
+      "reported_f1": 0.8490367036706259,
+      "adjusted_threshold": false,
+      "fit_seconds": 0.009737586975097657
+    },
+    {
+      "source": "Versión Alejo",
+      "id": "fe_kmeans_knn_cos",
+      "name": "FE + Distancias k-Means + k-NN (k=23, Coseno)",
+      "family": "k-NN",
+      "f1_macro": 0.8623720330701075,
+      "std": 0.01830839667465922,
+      "reported_f1": 0.8623720330701075,
+      "adjusted_threshold": false,
+      "fit_seconds": 0.3102154199999859
+    }
+  ],
+  "total_configurations": 116,
+  "validation": "5-fold StratifiedKFold, shuffle=True, random_state=42",
+  "selection": "Mayor F1 macro de decisión estándar en resultados ya calculados. Sin búsqueda nueva ni ensamble no validado.",
+  "threshold_note": "Los resultados con ajuste de umbral se muestran por separado; no se usan para ordenar. La calibración de la fuente no equivale a una CV anidada estricta.",
+  "limits": "La comparación reutiliza CV de selección; diferencias pequeñas no prueban superioridad estadística. Test oculto desconocido.",
+  "import_verification": {
+    "source_submission_reproduced": true,
+    "raw_predict_differences_from_source_wrapper": 0,
+    "version_warnings": []
+  },
+  "winner_confusion_matrix": [
+    [
+      4216,
+      153
+    ],
+    [
+      218,
+      610
+    ]
+  ],
+  "winner_fold_scores": [
+    0.878125,
+    0.8746706236791222,
+    0.835787870515381,
+    0.8508313023503375,
+    0.8724453688056963
+  ],
+  "previous_winner_f1": 0.8509755737636672
+}

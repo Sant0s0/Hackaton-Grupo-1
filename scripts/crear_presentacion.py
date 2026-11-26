@@ -15,6 +15,13 @@ def main():
     meta = json.loads((ROOT / "outputs/experiment.json").read_text(encoding="utf-8"))
     results = pd.read_csv(ROOT / "outputs/cv_results.csv")
     audit = json.loads((ROOT / "outputs/data_audit.json").read_text(encoding="utf-8"))
+    final_path = ROOT / "outputs/consolidated.json"
+    final = json.loads(final_path.read_text(encoding="utf-8")) if final_path.exists() else None
+    if final:
+        chosen = next(m for m in final['models'] if m['id'] == final['winner_id'])
+        meta['best_cv']['f1_macro_mean'] = chosen['f1_macro']
+        meta['best_cv']['f1_macro_std'] = chosen['std']
+        meta['candidates'] = final['total_configurations']
     train, test = load_data()
     fmt = lambda number: f"{number:.4f}".replace(".", ",")
     best = meta["best_cv"]["f1_macro_mean"]
@@ -58,6 +65,11 @@ def main():
 .controls{height:60px;display:flex;align-items:center;justify-content:center;gap:14px;color:#ecf2f7;background:#102330;font-size:14px}.controls button{background:#304c5f;color:white;border:1px solid #698091;border-radius:5px;font:inherit;padding:8px 13px;cursor:pointer}.controls button:focus-visible{outline:3px solid #f3a7c1}.controls small{color:#bdcfdd}progress{height:6px;width:100px;accent-color:#e482a6}.controls a{color:white}body:fullscreen .deck{height:calc(100dvh - 60px)}
 @media print{@page{size:A4 landscape;margin:0}body{background:white}.deck{display:block;height:auto}.slide,.slide.active{display:flex;width:297mm;height:210mm;aspect-ratio:auto;break-after:page;padding:15mm 18mm}.controls{display:none}.source{bottom:7mm}.slide:last-child{break-after:auto}}
 '''
+    if final:
+        sections[2] = sections[2].replace('3 cocientes', '22 atributos').replace('hipótesis fisicoquímicas', '6 derivadas + 5 logaritmos')
+        bars = ''.join(f'<div class="bar-row"><span>{escape(m["family"]+" · "+m["id"].replace("selected_", ""))}</span><div class="track"><i style="width:{m["f1_macro"]*100:.3f}%"></i></div><strong>{fmt(m["f1_macro"])}</strong></div>' for m in final['models'])
+        sections[5] = f'''<section class="slide" aria-label="6. Resultado consolidado"><p class="kicker">COMPARACIÓN DE TRES PROYECTOS</p><h2>k-NN con centroides obtuvo<br>el mayor F1 macro estándar.</h2><div class="split"><div class="bars">{bars}</div><div class="rail"><strong class="big">{fmt(best)}</strong><p>Media de 5 folds<br>Desviación muestral: {fmt(chosen['std'])}</p><p><b>23 vecinos · coseno<br>votos por distancia · centroides 2/6</b></p><p class="support">22 variables químicas/logarítmicas y 18 coordenadas de distancias. Sin PCA.</p></div></div></section>'''
+        sections[6] = f'''<section class="slide dark" aria-label="7. Alcance de la comparación"><p class="kicker">GENERALIZACIÓN</p><h2>Seleccionar con CV no sustituye<br>la evaluación del test oculto.</h2><div class="contrast"><div><strong>116</strong><span>configuraciones existentes revisadas</span></div><div><strong>3</strong><span>proyectos con los mismos datos</span></div></div><p class="lead">Se comparó decisión estándar; los ajustes de umbral se separaron.</p><p class="support">No se repitieron búsquedas largas ni se inventó un ensamble. Hay {audit['duplicate_feature_rows_train']} filas repetidas por perfil. El control agrupado anterior corresponde al modelo base, no al nuevo ganador. Las diferencias de medias no prueban superioridad estadística.</p><p class="banner">F1 del test oculto: pendiente de evaluación docente.</p></section>'''
     # Bars scale with the slide instead of fixed screen pixels.
     sections[1] = sections[1].replace('height:180px', 'height:14cqw').replace('height:34px', 'height:2.65cqw')
     slides = ''.join(section.replace('</section>', '<span class="source">Grupo 1 · guía y resultados de validación del proyecto</span></section>') for section in sections)
