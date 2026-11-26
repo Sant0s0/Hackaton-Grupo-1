@@ -1,0 +1,93 @@
+{
+  "created_utc": "2026-11-26T12:51:28.822647+00:00",
+  "profile": "complete",
+  "seed": 42,
+  "folds": 5,
+  "candidates": 79,
+  "splitter": "StratifiedKFold(shuffle=True, random_state=42)",
+  "selection_rule": "Mayor F1 macro medio; empate: menor desviación, luego nombre.",
+  "best": {
+    "name": "fe_knn_k11_cosine_distance",
+    "stage": 4,
+    "family": "k-NN",
+    "params": {
+      "n_neighbors": 11,
+      "metric": "cosine",
+      "weights": "distance"
+    },
+    "ratios": true,
+    "pca": null,
+    "centroids": null
+  },
+  "best_cv": {
+    "name": "fe_knn_k11_cosine_distance",
+    "stage": 4,
+    "family": "k-NN",
+    "ratios": true,
+    "pca_variance": null,
+    "centroids": null,
+    "params": "{\"metric\": \"cosine\", \"n_neighbors\": 11, \"weights\": \"distance\"}",
+    "f1_macro_mean": 0.8509755737636672,
+    "f1_macro_std": 0.017458790795525106,
+    "f1_0_mean": 0.9541822809584195,
+    "f1_1_mean": 0.7477688665689146,
+    "precision_1_mean": 0.7768044491309196,
+    "recall_1_mean": 0.7209638554216868,
+    "accuracy_mean": 0.9224520618938328,
+    "fit_seconds_mean": 0.006790519999049139,
+    "prediction_seconds_mean": 0.08043529999995372,
+    "dimensions_mean": 14.0,
+    "warnings_count": 0
+  },
+  "grouped_diagnostic": {
+    "name": "fe_knn_k11_cosine_distance",
+    "stage": 4,
+    "family": "k-NN",
+    "ratios": true,
+    "pca_variance": null,
+    "centroids": null,
+    "params": "{\"metric\": \"cosine\", \"n_neighbors\": 11, \"weights\": \"distance\"}",
+    "f1_macro_mean": 0.8041428629237546,
+    "f1_macro_std": 0.012140457922417155,
+    "f1_0_mean": 0.9416507202725969,
+    "f1_1_mean": 0.6666350055749123,
+    "precision_1_mean": 0.7177542471774772,
+    "recall_1_mean": 0.6244541803577948,
+    "accuracy_mean": 0.9007111127563485,
+    "fit_seconds_mean": 0.006797780000488274,
+    "prediction_seconds_mean": 0.08147091999999248,
+    "dimensions_mean": 14.0,
+    "warnings_count": 0
+  },
+  "grouped_note": "Diagnóstico del ganador ya seleccionado; no es evaluación anidada ni test independiente.",
+  "oof_confusion_matrix": [
+    [
+      4197,
+      172
+    ],
+    [
+      231,
+      597
+    ]
+  ],
+  "artifacts": {
+    "base_kmeans_2": "model_base_kmeans_2.joblib",
+    "fe_knn_k11_cosine_distance": "model_fe_knn_k11_cosine_distance.joblib",
+    "mlp_64_32_relu_a0.01_bTrue": "model_mlp_64_32_relu_a0.01_bTrue.joblib",
+    "svm_linear_C0.1_gscale_wNone": "model_svm_linear_C0.1_gscale_wNone.joblib",
+    "svm_poly_C10_gscale_wNone": "model_svm_poly_C10_gscale_wNone.joblib",
+    "svm_rbf_C10_g0.03_wNone": "model_svm_rbf_C10_g0.03_wNone.joblib"
+  },
+  "sha256": {
+    "train_public.csv": "73a774f51fc708e0f07a1595fe92bea93957f5ea83cf2f56efc6ea1c9e9f508d",
+    "test_public_features.csv": "cd2d9cd2052f93452f055deb478a3bb8ce067e33d652dada5b6b735126a27d49"
+  },
+  "versions": {
+    "python": "3.13.6",
+    "sklearn": "1.9.1",
+    "numpy": "2.5.5",
+    "pandas": "3.1.1"
+  },
+  "elapsed_seconds": 515.1424573999975,
+  "hidden_test_f1_macro": null
+}

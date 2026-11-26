@@ -1,0 +1,31 @@
+{
+  "train_rows": 5197,
+  "test_rows": 1300,
+  "features": 11,
+  "class_counts": {
+    "0": 4369,
+    "1": 828
+  },
+  "missing_train": 0,
+  "missing_test": 0,
+  "duplicate_feature_rows_train": 807,
+  "test_rows_with_profile_in_train": 337,
+  "profiles_with_conflicting_labels": 1,
+  "iqr_flags_by_feature": {
+    "fixed_acidity": 292,
+    "volatile_acidity": 294,
+    "citric_acid": 397,
+    "residual_sugar": 97,
+    "chlorides": 224,
+    "free_sulfur_dioxide": 44,
+    "total_sulfur_dioxide": 6,
+    "density": 3,
+    "pH": 52,
+    "sulphates": 161,
+    "alcohol": 2
+  },
+  "sha256": {
+    "train_public.csv": "73a774f51fc708e0f07a1595fe92bea93957f5ea83cf2f56efc6ea1c9e9f508d",
+    "test_public_features.csv": "cd2d9cd2052f93452f055deb478a3bb8ce067e33d652dada5b6b735126a27d49"
+  }
+}

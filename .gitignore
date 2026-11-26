@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.ipynb_checkpoints/
+.streamlit/secrets.toml
+docs/fuentes_texto/
+docs/revision_visual/
+outputs/app_*.joblib
+outputs/.jupyter/

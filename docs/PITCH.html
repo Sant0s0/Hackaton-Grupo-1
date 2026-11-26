@@ -1,0 +1,35 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grupo 1 · Pitch de cinco minutos</title><style>
+:root{color-scheme:light;--ink:#21364a;--rose:#96375c;--line:#d8e1e9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef2f6;color:var(--ink);font:17px/1.7 'Segoe UI',Arial,sans-serif}
+main{max-width:1060px;margin:35px auto;background:white;padding:55px 65px;border-top:8px solid var(--rose);border-radius:8px}
+h1{font-size:2.7rem;line-height:1.13;letter-spacing:-.045em;margin:16px 0 20px}h2{font-size:1.65rem;line-height:1.3;margin:54px 0 15px;scroll-margin-top:20px}h3{font-size:1.14rem;margin:28px 0 9px}
+p{margin:10px 0 18px}.eyebrow{font-weight:700;letter-spacing:.12em;color:var(--rose);font-size:.8rem}.lead{font-size:1.2rem;color:#526779}
+a{color:#96375c;text-underline-offset:3px}nav{border:1px solid var(--line);padding:20px 26px;margin:28px 0;border-radius:10px;background:#f8fafc}nav a{display:inline-block;margin:3px 12px 3px 0}
+.note,.result{border-left:4px solid #396d99;padding:15px 22px;background:#eef5fa;margin:22px 0;border-radius:0 8px 8px 0}.result{border-color:var(--rose);background:#faf0f4}.muted{color:#587084;font-size:.9rem}
+table{border-collapse:collapse;width:100%;margin:18px 0 24px;font-size:.9rem;line-height:1.5}th{background:#eaf0f5;text-align:left;font-weight:700}td,th{padding:12px 13px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}tr{break-inside:avoid}
+code{background:#edf2f6;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere;font-size:.88em}pre{padding:18px;background:#142b3d;color:white;white-space:pre-wrap;border-radius:8px;overflow-wrap:anywhere}pre code{padding:0;background:none;color:inherit}
+.formula{font:1.05rem/1.8 'Cambria Math','Segoe UI',serif;background:#f6f8fa;padding:18px 22px;border:1px solid var(--line);border-radius:8px;overflow-wrap:anywhere}
+figure{margin:24px 0}figure img{max-width:100%;height:auto}figcaption{font-size:.88rem;color:#587084;margin:6px 0}li{margin:8px 0}.pill{display:inline-block;padding:5px 13px;border:1px solid var(--line);border-radius:20px;margin:4px 8px 4px 0;font-size:.88rem}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:22px;color:#587084;font-size:.9rem}button{background:var(--rose);color:white;border:0;border-radius:6px;padding:10px 17px;font:inherit;cursor:pointer}
+@media(max-width:700px){main{margin:0;padding:30px 20px;border-radius:0}body{font-size:16px}h1{font-size:2.1rem}table{font-size:.8rem}td,th{padding:8px 6px}}
+@media print{@page{size:A4;margin:18mm}body{background:white;font-size:10pt;line-height:1.5}main{padding:0;margin:0;border:0;max-width:none}h1{font-size:29pt}h2{font-size:17pt;margin-top:25pt;break-after:avoid}h3{break-after:avoid}table{font-size:8.5pt}figure,.note,.result,.formula{break-inside:avoid}nav,.print{display:none}a{color:inherit}pre{background:#eef2f6;color:#21364a}footer{font-size:8.5pt}}
+</style></head><body><main><div class="eyebrow">GRUPO 1 · GUION DE DEFENSA</div><h1>Cinco minutos para explicar el trabajo</h1>
+<p class="lead">Apoyo para hablar con sus propias palabras. Distribuyan las intervenciones según el trabajo real del equipo.</p>
+<p class="print"><button onclick="window.print()">Imprimir o guardar como PDF</button></p>
+<h2>0:00–0:40 · Problema y métrica</h2><p>«Clasificamos vinos estándar y superiores usando once mediciones. Aprendemos con 5.197 muestras y predecimos 1.300. Como solo el 15,93% del entrenamiento es superior, usamos F1 macro: la clase minoritaria cuenta tanto como la mayoritaria».</p>
+<h2>0:40–1:30 · EDA y representación</h2><p>«No encontramos nulos. Las escalas son muy distintas: densidad cerca de uno frente a SO₂ total hasta 440. Por eso escalamos dentro de cada fold. Conservamos valores extremos sin evidencia de error y añadimos tres cocientes: acidez fija/volátil, SO₂ libre/total y alcohol/densidad».</p>
+<h2>1:30–2:20 · Baseline y PCA</h2><p>«Comparamos k-NN con 3, 5 y 7 vecinos y Euclidiana/Manhattan; también k-means por mayoría. El mejor baseline dio 0.8066. Luego probamos ratios, distancias a centroides y PCA de 90% y 95%. Una ablación mantuvo k y distancia fijos para aislar el cambio de representación».</p>
+<h2>2:20–3:20 · Progresión a SVM y MLP</h2><p>«SVM compara tres kernels y ajusta C, gamma y pesos de clase. MLP compara una o dos capas, ReLU/tanh y regularización. Todos usan cinco folds iguales, semilla 42 y pipeline completo. No asumimos que el modelo más complejo vaya a ganar».</p>
+<h2>3:20–4:20 · Resultado y límite</h2><p>«El ganador fue k-NN con 11 vecinos, coseno y votos ponderados: F1 macro 0.8510 con desviación 0.0175; F1 superior 0.7478. Detectamos 807 filas repetidas por perfil. Al agrupar perfiles idénticos, el control dio 0.8041. La diferencia nos obliga a distinguir nuevas filas de nuevos perfiles. Esta CV sirve para selección; no sustituye el test oculto».</p>
+<h2>4:20–5:00 · Demostración y entrega</h2><p>«Streamlit recorre los seis pasos de la guía y permite elegir cada método, cambiar parámetros e introducir once mediciones. La entrega contiene notebook ejecutado, README, documentación y CSV comprobado: dos columnas y 1.300 observaciones en el orden original. El puntaje oculto lo calcula la profesora».</p>
+<h2>Preguntas rápidas</h2><table><tr><th>Pregunta</th><th>Respuesta clave</th></tr>
+<tr><td>¿Fuga de datos?</td><td>Imputación, escalado, centroides y PCA se ajustan dentro del entrenamiento de cada fold.</td></tr>
+<tr><td>¿Qué hace C?</td><td>Regula cuánto se penalizan las violaciones del margen de SVM.</td></tr>
+<tr><td>¿Qué hace gamma?</td><td>En RBF controla la velocidad con que decae la similitud con la distancia.</td></tr>
+<tr><td>¿Qué hace alpha?</td><td>Regulariza los pesos de la MLP; no es la tasa de aprendizaje.</td></tr>
+<tr><td>¿Por qué no PCA final?</td><td>Se probó, pero el máximo F1 de la rejilla correspondió a un candidato sin PCA.</td></tr>
+<tr><td>¿Coseno es métrica?</td><td>1−coseno es disimilitud y no satisface todos los axiomas métricos.</td></tr>
+<tr><td>¿k-means ya clasifica?</td><td>Agrupa sin etiquetas; el mapeo por mayoría se aprende después, solo con train del fold.</td></tr>
+<tr><td>¿Hay convergencia garantizada?</td><td>No. Se conservan los avisos de ajuste y se informa el límite de iteraciones.</td></tr>
+<tr><td>¿La CV es imparcial después de elegir?</td><td>Puede ser optimista al seleccionar entre 79 candidatos; el test oculto queda separado.</td></tr></table>
+<p><a href="EXPLICACION.html">Abrir la explicación completa</a> · <a href="https://github.com/Sant0s0/Hackaton-Grupo-1">Repositorio</a></p><footer>Grupo 1 · Juan Alejandro Cardona · Javier Urrego · Santiago Osorio<br>Métodos y Modelos Matemáticos para IA · Javeriana Cali · 26 de noviembre de 2026</footer></main></body></html>
